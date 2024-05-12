@@ -1,0 +1,257 @@
+#container {
+  width: 100%;
+  height: auto;
+  padding: 4rem 2.2rem 0 2.2rem;
+  justify-content: flex-start;
+}
+
+#container .navbar {
+  width: 15%;
+  height: auto;
+}
+
+#container .navbar .logo {
+  width: 90%;
+}
+
+#container .navbar .logo a {
+  font-size: 5.2rem;
+  color: #484848;
+  font-weight: 500;
+  line-height: 100%;
+  text-decoration: none;
+}
+
+#container .navbar .page {
+  width: fit-content;
+  margin-top: 5rem;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#container .navbar .page .link {
+  width: fit-content;
+  height: 100%;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#container .navbar .page .link span {
+  width: max-content;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #A0AEC0;
+}
+
+#container .navbar .page .link p {
+  border-radius: 2.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: #fff;
+  text-align: center;
+  line-height: 4rem;
+}
+
+#container .navbar .page .link i {
+  width: auto;
+  font-size: 2rem;
+  line-height: 4.5rem;
+  color: #4FD1C5;
+}
+
+#container .navbar .page .link.active span {
+  color: #2D3748;
+}
+
+#container .navbar .page .link.active p {
+  background: #4FD1C5;
+}
+
+#container .navbar .page .link.active i {
+  color: white;
+}
+
+#container .navbar .help {
+  max-width: 80%;
+  height: max-content;
+  margin-top: 7rem;
+  min-width: 21.8rem;
+  min-height: 16.95rem;
+  border-radius: 1.5rem;
+  background: #4FD1C5;
+  padding: 1.6rem;
+}
+
+#container .navbar .help .icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.2rem;
+  background: #FFF;
+}
+
+
+#container .navbar .help .top {
+  margin-top: 2rem;
+}
+
+#container .navbar .help p {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 140%;
+}
+
+#container .navbar .help a {
+  width: 100%;
+  height: 3.5rem;
+  display: block;
+  background: #FFF;
+  color: #000;
+  font-size: 1.2rem;
+  line-height: 3.5rem;
+  border-radius: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+#container .navbar .logout {
+  width: max-content;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+  background: #4FD1C5;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #000;
+  transition: all 0.5s ease-in-out;
+}
+
+#container .navbar .logout:hover {
+  background: #fff;
+  color: #000;
+}
+
+#container .navbar .logout i,
+#container .navbar .logout {
+  font-size: 2rem;
+}
+
+#container .content {
+  width: 85%;
+}
+
+#container .content .breadcrumb {
+  width: 100%;
+  justify-content: space-between;
+}
+
+#container .content .breadcrumb .left {
+  width: auto;
+  flex-direction: column;
+}
+
+#container .content .addBtn {
+  display: block;
+  width: max-content;
+  padding: 1rem 2rem;
+  background: #4FD1C5;
+  color: #fff;
+  border-radius: 1rem;
+  font-size: 2rem;
+  margin: 1rem 0 0 auto;
+  cursor: pointer;
+  border: 1px solid #fff;
+  user-select: none;
+  transition: all 0.5s ease-in-out;
+}
+
+#container .content .addBtn:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.content .breadcrumb .left .top {
+  width: max-content;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.content .breadcrumb .left .top a:nth-child(1),
+.content .breadcrumb .left .top a:nth-child(2) {
+  color: #A0AEC0;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.content .breadcrumb .left .top a:nth-child(2) {
+  color: #2D3748;
+}
+
+.content .breadcrumb .left .bottom {
+  width: max-content;
+  color: #2D3748;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.content .breadcrumb .right {
+  align-items: center;
+  width: max-content;
+}
+
+.content .breadcrumb .right .input {
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+}
+
+.content .breadcrumb .right .input a {
+  font-size: 1.6rem;
+  width: auto;
+}
+
+.content .breadcrumb .right .input input {
+  width: 150px;
+  border: none;
+  font-size: 1.6rem;
+  outline: none;
+}
+
+.content .breadcrumb .right .input svg {
+  width: 16px;
+  height: 16px;
+}
+
+.content .breadcrumb .right .sign_in {
+  align-items: center;
+  gap: 1rem;
+  width: 120px;
+}
+
+.content .breadcrumb .right .sign_in i {
+  width: auto;
+  height: auto;
+  font-size: 1.6rem;
+}
+
+.content .breadcrumb .right .sign_in span {
+  width: auto;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.content .breadcrumb .right .setting,
+.content .breadcrumb .right .notice {
+  width: max-content;
+  font-size: 1.6rem;
+  color: #718096;
+  margin: 0 1rem;
+}
