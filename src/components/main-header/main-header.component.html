@@ -1,0 +1,28 @@
+<header class="header flex">
+  <h1 class="logo">
+    <a href="/" class="logo">FASCO</a>
+  </h1>
+  <nav class="navbar flex">
+    <a routerLink="/" routerLinkActive="active"
+       ariaCurrentWhenActive="page">home</a>
+    <a routerLink="/shop" routerLinkActive="active"
+       ariaCurrentWhenActive="page">shop</a>
+    <a href="/page/about">about</a>
+    <a href="/page/contact">contact</a>
+  </nav>
+  <div class="icon flex">
+    <ng-icon class="cursor-pointer" routerLink="/shop" routerLinkActive="active"
+             ariaCurrentWhenActive="page" size="20" name="faSolidMagnifyingGlass">
+    </ng-icon>
+    <ng-icon class="cursor-pointer" routerLink="/sign_in" routerLinkActive="active"
+             ariaCurrentWhenActive="page" size="20" name="faUser">
+    </ng-icon>
+    <ng-icon class="cursor-pointer" routerLink="/sign_in" routerLinkActive="active"
+             ariaCurrentWhenActive="page" size="20" name="faSolidClockRotateLeft">
+    </ng-icon>
+    <ng-icon class="cursor-pointer" routerLink="/sign_in" routerLinkActive="active"
+             ariaCurrentWhenActive="page" size="20" name="faSolidBagShopping">
+      <span class="cartLength close">1</span>
+    </ng-icon>
+  </div>
+</header>

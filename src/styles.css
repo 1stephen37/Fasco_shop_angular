@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Volkhov;
+  src: url("assets/font/Volkhov/Volkhov-Regular.ttf");
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url("assets/font/Poppins/Poppins-Regular.ttf");
+}
+
+::selection {
+  background: #ccc;
+}
+
+*, body {
+  font-size: 62.5%;
+}
+
+h1 {
+  font-family: Volkhov, 'sans-serif';
+  text-transform: capitalize;
+}
+
+h1 a {
+  font-family: Volkhov, 'sans-serif';
+}
+
