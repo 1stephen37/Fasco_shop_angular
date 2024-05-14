@@ -5,7 +5,7 @@ import axios from "axios";
 @Injectable({
   providedIn: 'root'
 })
-export class ProductModelService {
+export class ProductsModelService {
   collection: string;
   endPoint: string;
   url: string;
@@ -16,7 +16,7 @@ export class ProductModelService {
     this.url = this.endPoint + this.collection;
   }
 
-  async findProductsByCategoryAndPage(idCategory: number, page: number, limit: number = 6): Promise<Category[]> {
+  async findProductsByCategoryAndPage(idCategory: number, page: number, limit: number = 6): Promise<Product[]> {
     let offset = (page - 1) * limit;
     const res = await axios.get(this.url + `?id_category=${idCategory}&offset=${offset}&limit=${limit}`)
     return res.data;

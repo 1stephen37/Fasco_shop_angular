@@ -5,6 +5,7 @@ import {Section5Component} from "../../components/section5/section5.component";
 import {Section7Component} from "../../components/section7/section7.component";
 import {MainButtonComponent} from "../../components/main-button/main-button.component";
 import {CategoriesModelService} from "../../models/categoriesModel/categories-model.service";
+import {ProductsModelService} from "../../models/productsModel/products-model.service";
 
 @Component({
   selector: 'app-home-view',
@@ -23,14 +24,15 @@ import {CategoriesModelService} from "../../models/categoriesModel/categories-mo
 export class HomeViewComponent {
   protected readonly parseInt = parseInt;
   private CategoriesModel = inject(CategoriesModelService);
+  private ProductsModel = inject(ProductsModelService);
   categoriesList: Category[] = [];
   selectedCategory: number = 0;
+  productsList: Product[] = [];
 
   constructor() {
     this.CategoriesModel.findCategoriesLimit(5)
       .then(categories => {
         this.categoriesList = categories;
-        console.log(this.categoriesList)
         if (this.selectedCategory === 0) this.selectedCategory = parseInt(this.categoriesList[1].id_category);
       })
       .catch(err => console.log(err));

@@ -19,4 +19,9 @@ export class CategoriesModelService {
     const res = await axios.get(this.url + `?limit=${limit}`)
     return res.data;
   }
+
+  async findAllCategories() : Promise<Category[]> {
+    const res = await axios.get(this.url)
+    return res.data;
+  }
 }

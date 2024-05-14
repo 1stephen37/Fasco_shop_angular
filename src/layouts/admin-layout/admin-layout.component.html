@@ -1,35 +1,63 @@
 <main id="container" class="flex">
   <div class="navbar">
     <h1 class="logo">
-      <a href="/" class="logo">FASCO</a>
+      <a routerLink='/admin/dashboard'  class="logo">FASCO</a>
     </h1>
     <div class="page flex">
-      <a href="/admin" id="indexLink" class="link flex">
-        <p><i class="fa-solid fa-house-chimney"></i></p>
+      <a routerLink="/admin/dashboard" [class.active]="isActive('dashboard')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidHouseChimney" size="22"></ng-icon>
+          </i>
+        </p>
         <span class="">Dashboard</span>
       </a>
-      <a href="/admin/categories" id="categoriesLink" class="link flex">
-        <p><i class="fa-solid fa-list"></i></p>
+      <a routerLink="/admin/categories" [class.active]="isActive('categories')" class="link flex">
+        <p>
+            <i>
+              <ng-icon name="faSolidList" size="22"></ng-icon>
+            </i>
+        </p>
         <span class="">Categories</span>
       </a>
-      <a href="/admin/products" id="productsLink" class="link flex">
-        <p><i class="fa-solid fa-shirt"></i></p>
+      <a routerLink="/admin/products" [class.active]="isActive('products')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidShirt" size="22"></ng-icon>
+          </i>
+        </p>
         <span class="">Products</span>
       </a>
-      <a href="/admin/users" id="usersLink" class="link flex">
-        <p><i class="fa-solid fa-user"></i></p>
+      <a routerLink="/admin/users" [class.active]="isActive('users')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidUser" size="22"></ng-icon>
+          </i>
+        </p>
         <span class="">Users</span>
       </a>
-      <a href="/admin/orders" id="ordersLink" class="link flex">
-        <p><i class="fas fa-shopping-cart"></i></p>
+      <a routerLink="/admin/orders" [class.active]="isActive('orders')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidCartShopping" size="22"></ng-icon>
+          </i>
+        </p>
         <span class="">Orders</span>
       </a>
-      <a href="/admin/vouchers" id="vouchersLink" class="link flex">
-        <p><i class="fa-solid fa-ticket"></i></p>
+      <a routerLink="/admin/vouchers" [class.active]="isActive('vouchers')" class="link flex">
+        <p>
+          <i>
+          <ng-icon name="faSolidTicket" size="22"></ng-icon>
+          </i>
+        </p>
         <span class="">Vouchers</span>
       </a>
-      <a href="/admin/delivery" id="deliveryLink" class="link flex">
-        <p><i class="fa-solid fa-truck"></i></p>
+      <a routerLink="/admin/deliveries" [class.active]="isActive('deliveries')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidTruck" size="22"></ng-icon>
+          </i>
+        </p>
         <span class="">Delivery</span>
       </a>
     </div>
@@ -47,7 +75,14 @@
         DOCUMENTATION
       </a>
     </div>
-    <div class="logout">Logout <i class="fa-solid fa-right-from-bracket"></i></div>
+    <div class="logout flex justify-center items-center gap-[1rem]" routerLink="/">
+      Back to home
+      <ng-icon size="21" name="faSolidHouseChimneyCrack"></ng-icon>
+    </div>
+    <div class="logout flex justify-center items-center gap-[1rem]">
+      Logout
+      <ng-icon size="21" name="faSolidRightFromBracket"></ng-icon>
+    </div>
   </div>
   <div class="content">
     <div class="breadcrumb flex">
@@ -70,8 +105,12 @@
           <i class="fa-solid fa-user"></i>
           <span>Nguyen Tien</span>
         </a>
-        <a href="#" class="fa-solid fa-gear setting"></a>
-        <a href="#" class="fa-solid fa-bell notice"></a>
+        <a href="" class="setting">
+          <ng-icon size="16" name="faSolidGear"></ng-icon>
+        </a>
+        <a href="" class="notice">
+          <ng-icon size="16" name="faSolidBell"></ng-icon>
+        </a>
       </div>
     </div>
     <ng-content></ng-content>

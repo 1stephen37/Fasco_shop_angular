@@ -1,0 +1,176 @@
+.head {
+  width: 100%;
+  height: auto;
+  margin-top: 10rem;
+}
+
+.head .heading {
+  text-align: center;
+  font-size: 4.2rem;
+  line-height: 3.2rem;
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+.head .direction {
+  width: fit-content;
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.head .direction p {
+  font-size: 1.8rem;
+  line-height: 2.25rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.head .direction p:first-child {
+  opacity: 0.8;
+}
+
+.section1 {
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.section1 .heading {
+  font-size: 4rem;
+  width: max-content;
+  margin: 0 auto;
+  position: relative;
+  height: max-content;
+  text-align: center;
+}
+
+.section1 .content {
+  width: 95rem;
+  margin: 3rem auto 0 auto;
+  gap: 23rem;
+}
+
+.section1 .content .left {
+  width: 37rem;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section1 .content .left .top .des,
+.section1 .content .right .top .des,
+.section1 .content .left .bottom .des,
+.section1 .content .right .bottom .des {
+  font-size: 2rem;
+}
+
+.section1 .content .left .top,
+.section1 .content .left .bottom {
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.section1 .content .right .top,
+.section1 .content .right .bottom {
+  align-items: center;
+  gap: 3rem;
+}
+
+.section1 .content .left .top .icon,
+.section1 .content .left .bottom .icon,
+.section1 .content .right .top .icon,
+.section1 .content .right .bottom .icon {
+  width: 6.6rem;
+  height: auto;
+}
+
+.section1 .content .right {
+  width: 35rem;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section2 {
+  width: 53rem;
+  margin: 10rem auto 0 auto;
+}
+
+.section2 .heading {
+  font-size: 4rem;
+  width: 53rem;
+  margin: 0 auto;
+  position: relative;
+  height: 9rem;
+  text-align: center;
+}
+
+
+.section2 .content {
+  justify-content: center;
+  gap: 10rem;
+  margin-top: 3rem;
+}
+
+.section2 .content .phone {
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section2 .content .phone .icon {
+  width: 2.2rem;
+}
+
+.section2 .content .phone .number {
+  font-size: 2rem;
+}
+
+.section3 {
+  width: 100%;
+  margin-top: 10rem;
+}
+
+.section3 .heading {
+  font-size: 4rem;
+  width: max-content;
+  margin: 0 auto;
+  height: max-content;
+  text-align: center;
+}
+
+
+.section3 .detail {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.section3 .box-2 {
+  width: max-content;
+  margin: 5rem auto 0 auto;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8rem;
+}
+
+.section3 .box-2 .box {
+  width: max-content;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section3 .box-2 .box .img {
+  width: 50rem;
+  margin: 0 auto;
+  min-height: 50rem;
+  object-fit: cover;
+  height: max-content;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.section3 .box-2 .box .name,
+.section3 .box-2 .box .address {
+  font-size: 2rem;
+  text-align: center;
+}

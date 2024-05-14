@@ -1,0 +1,20 @@
+
+<div class="product_box">
+  <a href="detail/{{id}}" class="img link">
+    <img class="full" ngSrc="{{API.server}}images/uploads/{{image}}" priority alt="" fill>
+  </a>
+  <h1 class="name flex">
+    <a class="link" data-id="${product._id}" href="detail/{{id}}">
+      {{ name.length < 15 ? name : name.slice(0, 15) + '...' }}
+    </a>
+    <span>{{ size }}</span>
+  </h1>
+  <div class="price">
+    {{price}}
+  </div>
+  <div class="tag flex">
+    <div class="bg-[{{color}}]"></div>
+    <span>{{designer}}</span>
+  </div>
+</div>
+

@@ -1,0 +1,118 @@
+<app-main-layout>
+  <section class="content">
+    <section class="section1">
+      <div class="header_section1 flex">
+        <h1 class="heading">FASCO Checkout</h1>
+      </div>
+      <div class="line"></div>
+      <form method="post" action="/page/checkout" class="main-checkout">
+        <div class="left">
+          <div class="contact flex">
+            <div class="top flex">
+              <h1>Contact</h1>
+              <p>Have an account?
+                <a class="text-[1.8rem]" routerLink="/sign-up" routerLinkActive="active"
+                                     ariaCurrentWhenActive="page">Create Account</a></p>
+            </div>
+            <label for="emailCheckout">
+              <input type="text" id="emailCheckout" placeholder="Email Address">
+            </label>
+          </div>
+          <div class="delivery">
+            <h1 class="heading">Delivery</h1>
+            <div class="form flex">
+              <label for="checkoutOrder" class="checkoutOrder">
+                <input type="text" disabled placeholder="Order Date" id="checkoutOrder">
+              </label>
+              <label for="checkoutName" class="checkoutName">
+                <input type="text" placeholder="Your Full Name" id="checkoutName">
+                <span></span>
+              </label>
+              <label class="checkoutAddress" for="checkoutAddress">
+                <input id="checkoutAddress" placeholder="Address" type="text">
+                <span></span>
+              </label>
+              <label for="checkoutPhone">
+                <input id="checkoutPhone" placeholder="Phone number" type="number">
+                <span></span>
+              </label>
+            </div>
+            <div class="checkbox flex">
+              <label for="saveInfor">
+                <input id="saveInfor" type="checkbox">
+              </label>
+              Save This Info for future
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="cart_preview flex">
+            <div class="cart_item flex">
+              <div class="img">
+                <img loading="lazy" src="http://localhost:3000/images/uploads/product5.svg" alt="">
+              </div>
+              <div class="content_cart flex">
+                <h1 class="name">Colorful Dress</h1>
+                <div class="color">color: #80B0D5</div>
+                <div class="quantity">quantity: 2</div>
+              </div>
+              <div class="operator">
+                2 * $40.00
+              </div>
+              <div class="subTotal">
+                $41.98
+              </div>
+            </div>
+
+            <div class="cart_item flex">
+              <div class="img">
+                <img loading="lazy" src="http://localhost:3000/images/uploads/yoga-clothes.jpg" alt="">
+              </div>
+              <div class="content_cart flex">
+                <h1 class="name">Yoga clothes</h1>
+                <div class="color">color: #26253F</div>
+                <div class="quantity">quantity: 2</div>
+              </div>
+              <div class="operator">
+                2 * $40.00
+              </div>
+              <div class="subTotal">
+                $80.00
+              </div>
+            </div>
+          </div>
+          <div class="rdiscountCode flex">
+            <div>Vouchers</div>
+            <div id="voucherPlace" class="flex">
+              <div class="voucher voucher-6614722b10ebdad8860b8b86 active" data-id="6614722b10ebdad8860b8b86" data-discount="10">Code : sale10 - Discount: <span class="text-[1.8rem]">10</span>% </div>
+            </div>
+          </div>
+          <div class="total flex">
+            <div class="flex">
+              <div>Subtotal</div>
+              <div id="subTotal">$118.78</div>
+            </div>
+            <div id="shipping" class="flex">
+              <div>Shipping</div>
+              <div id="shippingOption" class="" data-distance="2.30">
+                <div data-id="660e247a76a91a7ffa96b8e1" class="delivery-660e247a76a91a7ffa96b8e1 active">
+                  US - slow : 1.5$ x 2.30km = <span class="text-[1.8rem]">3.45</span>$</div>
+              </div>
+            </div>
+            <div class="flex">
+              <strong>Total</strong>
+              <strong id="total" total="118.78">$118.78</strong>
+            </div>
+          </div>
+          <button type="submit" class="pay">
+            pay now
+          </button>
+          <div class="copyright">
+            Copyright © 2022 FASCO . All Rights Reseved.
+          </div>
+        </div>
+      </form>
+    </section>
+    <app-section7/>
+  </section>
+</app-main-layout>
