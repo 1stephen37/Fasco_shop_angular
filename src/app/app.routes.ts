@@ -17,6 +17,8 @@ import {ProductsViewComponent} from "../views/products-view/products-view.compon
 import {VouchersViewComponent} from "../views/vouchers-view/vouchers-view.component";
 import {UsersViewComponent} from "../views/users-view/users-view.component";
 import {OrdersViewComponent} from "../views/orders-view/orders-view.component";
+import {DetailViewComponent} from "../views/detail-view/detail-view.component";
+import {PageNotFoundComponent} from "../views/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
   {
@@ -26,7 +28,7 @@ export const routes: Routes = [
     path: 'shop', component: ShopViewComponent
   },
   {
-    path: 'shop/:id', component: ShopViewComponent
+    path: 'detail/:id', component: DetailViewComponent
   },
   {
     path: 'about', component: AboutViewComponent
@@ -75,5 +77,11 @@ export const routes: Routes = [
   },
   {
     path: 'admin/orders', component: OrdersViewComponent
+  },
+  {
+    path: 'admin', redirectTo : 'admin/dashboard', pathMatch: "full"
+  },
+  {
+    path: '**', component: PageNotFoundComponent, pathMatch: "full"
   },
 ];

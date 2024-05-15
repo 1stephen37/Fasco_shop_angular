@@ -2,40 +2,40 @@
   <section class="content">
     <section class="section1">
       <div class="header_section1 flex">
-        <h1 class="heading">Shopping Cart</h1>
+        <h1 class="heading">Giỏ Hàng</h1>
         <div class="link flex">
-          <a href="#">Home</a>
+          <a href="#">Trang Chủ</a>
           <span>></span>
-          <a href="#">Your Shopping Cart</a>
+          <a href="#">Giỏ Hàng của tôi</a>
         </div>
       </div>
       <div class="main_cart">
         <div class="thead">
-          <h1>Product</h1>
-          <h1>Price</h1>
-          <h1>Quantity</h1>
-          <h1>Total</h1>
+          <h1>Sản Phẩm</h1>
+          <h1>Giá</h1>
+          <h1>Số Lượng</h1>
+          <h1>Tổng</h1>
         </div>
         <div class="line"></div>
         <div class="tbody flex">
           <div class="row cartItem-0">
             <div class="product flex">
-              <img loading="lazy" src="http://localhost:3000/images/uploads/product5.svg" alt="">
+              <img loading="lazy" src="assets/images/products/product5.svg" alt="">
               <div class="flex">
-                <div class="name">Colorful Dress</div>
-                <div class="color">Color: #80B0D5  - Size:  S</div>
-                <div class="quantity">quantity in stock: 100</div>
-                <a href="#" class="removeBtn" data-index="0">Remove</a>
+                <div class="name">Sản phẩm mẫu</div>
+                <div class="color">Màu: #80B0D5  - Cỡ:  S</div>
+                <div class="quantity">số lượng trong kho: 100</div>
+                <a href="#" class="removeBtn" data-index="0">Xóa</a>
               </div>
             </div>
-            <div class="price">$20.99</div>
+            <div class="price">200.000 VND</div>
             <div class="quantity_cart flex">
               <a href="/page/cart/#" class="downBtn" data-index="0">-</a>
               <span class="quantity-0">2</span>
               <a href="/page/cart/#" class="upBtn" data-index="0">+</a>
             </div>
             <div class="total total-0">
-              41.98$
+              400.000 VND
             </div>
           </div>
         </div>
@@ -43,14 +43,14 @@
       </div>
       <div class="checkbox flex">
         <input type="checkbox"/>
-        <div>For <span>$10.00</span> please wrap the product</div>
+        <div><span>30.000 VND</span> để gói đơn hàng tốt hơn</div>
       </div>
       <div class="line"></div>
       <div class="subtotal flex">
-        <div>Subtotal:</div>
-        <div>$100.00</div>
+        <div>Tạm tính:</div>
+        <div>400.000 VND</div>
       </div>
-      <app-main-button class="ml-auto mt-[3rem] px-[18rem] py-[2rem]" message="Checkout" href="/checkout" />
+      <app-main-button class="ml-auto mt-[3rem] px-[18rem] py-[2rem]" message="thanh toán" href="/checkout" />
     </section>
     <app-section7 />
   </section>

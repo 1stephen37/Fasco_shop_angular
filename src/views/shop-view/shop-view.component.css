@@ -250,6 +250,7 @@
 }
 
 .section1 .box_product .main_box_product .top_content .top_header select {
+  text-transform: capitalize;
   border: none;
   outline: none;
   font-weight: bold;

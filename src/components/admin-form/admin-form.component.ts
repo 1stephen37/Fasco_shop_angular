@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-admin-form',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './admin-form.component.css'
 })
 export class AdminFormComponent {
-
+  @Input() type : string = '';
 }

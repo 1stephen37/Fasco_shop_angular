@@ -174,9 +174,12 @@
   color: #5B86E5;
 }
 
+.container-full .content .formSignUp >  .flex {
+  justify-content: space-between;
+}
+
 .container-full .content .formSignUp .forget {
   width: max-content;
-  margin: 0 4rem 0 auto;
   color: #5B86E5;
   font-weight: 700;
   transition: all 0.5s ease-in-out;

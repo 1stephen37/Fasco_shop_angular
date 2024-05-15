@@ -149,8 +149,6 @@
 .section3 .box-2 {
   width: max-content;
   margin: 5rem auto 0 auto;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 8rem;
 }
 
 .section3 .box-2 .box {

@@ -23,24 +23,55 @@ import {ProductsModelService} from "../../models/productsModel/products-model.se
 })
 export class HomeViewComponent {
   protected readonly parseInt = parseInt;
-  private CategoriesModel = inject(CategoriesModelService);
-  private ProductsModel = inject(ProductsModelService);
-  categoriesList: Category[] = [];
-  selectedCategory: number = 0;
+  // private CategoriesModel = inject(CategoriesModelService);
+  // private ProductsModel = inject(ProductsModelService);
+  categoriesList: Category[] = [
+    {
+      id_category: "1",
+      name: 'thời trang nữ',
+      updatedAt: "",
+      createdAt: ""
+    },
+    {
+      id_category: "2",
+      name: 'thời trang nam',
+      updatedAt: "",
+      createdAt: ""
+    },
+    {
+      id_category: "3",
+      name: 'phụ kiện nam',
+      updatedAt: "",
+      createdAt: ""
+    },
+    {
+      id_category: "4",
+      name: 'phụ kiện nữ',
+      updatedAt: "",
+      createdAt: ""
+    },
+    {
+      id_category: "5",
+      name: 'đặc biệt',
+      updatedAt: "",
+      createdAt: ""
+    }
+  ];
+  selectedCategory: number = 1;
   productsList: Product[] = [];
 
   constructor() {
-    this.CategoriesModel.findCategoriesLimit(5)
-      .then(categories => {
-        this.categoriesList = categories;
-        if (this.selectedCategory === 0) this.selectedCategory = parseInt(this.categoriesList[1].id_category);
-      })
-      .catch(err => console.log(err));
+    // this.CategoriesModel.findCategoriesLimit(5)
+    //   .then(categories => {
+    //     this.categoriesList = categories;
+    //     if (this.selectedCategory === 0) this.selectedCategory = parseInt(this.categoriesList[1].id_category);
+    //   })
+    //   .catch(err => console.log(err));
 
   }
 
-  handleCategories = (id: number, event: Event): void => {
-    event.preventDefault();
-    this.selectedCategory = id;
-  }
+  // handleCategories = (id: number, event: Event): void => {
+  //   event.preventDefault();
+  //   this.selectedCategory = id;
+  // }
 }

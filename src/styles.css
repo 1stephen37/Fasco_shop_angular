@@ -3,13 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: Volkhov;
-  src: url("assets/font/Volkhov/Volkhov-Regular.ttf");
-}
-
-@font-face {
-  font-family: Poppins;
-  src: url("assets/font/Poppins/Poppins-Regular.ttf");
+  font-family: Roboto;
+  src: url("assets/font/Roboto/Roboto-Regular.ttf");
 }
 
 ::selection {
@@ -17,15 +12,8 @@
 }
 
 *, body {
+  font-family: Roboto, 'sans-serif';
   font-size: 62.5%;
 }
 
-h1 {
-  font-family: Volkhov, 'sans-serif';
-  text-transform: capitalize;
-}
-
-h1 a {
-  font-family: Volkhov, 'sans-serif';
-}
 

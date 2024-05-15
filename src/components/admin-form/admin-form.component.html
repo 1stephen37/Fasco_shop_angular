@@ -1,1 +1,50 @@
-<p>admin-form works!</p>
+@switch (type) {
+  @case ('addVoucher') {
+    <div id="formEditBackground">
+      <form class="main_form" id="formAddVoucher" enctype="multipart/form-data">
+        <section class="flex id_name">
+          <div>
+            <label class="form-label">Code</label>
+            <input type="text" id="addCodeVouchers" class="form-control">
+            <span class="message"></span>
+          </div>
+          <div class="line"></div>
+          <div>
+            <label class="form-label">Discount</label>
+            <input type="text" id="addDiscountVouchers" class="form-control">
+            <span class="message"></span>
+          </div>
+        </section>
+        <section class="flex id_name">
+          <div>
+            <label class="form-label">Min amount</label>
+            <input type="text" id="addMinAmountVouchers" class="form-control">
+            <span class="message"></span>
+          </div>
+          <div class="line"></div>
+          <div>
+            <label class="form-label">Date end</label>
+            <input type="date" id="addDateEndVouchers" class="form-control">
+            <span class="message"></span>
+          </div>
+        </section>
+        <section class="flex id_name">
+          <div>
+            <label class="form-label">Expired</label>
+            <select name="addRole" id="addExpiredVouchers">
+              <option value="false">False</option>
+              <option value="true">True</option>
+            </select>
+          </div>
+        </section>
+        <button id="addSubmit" type="submit" class="submit">Submit</button>
+      </form>
+    </div>
+  }
+  @case ('') {
+    Case B.
+  }
+  @default {
+    <div>there is nothing</div>
+  }
+}

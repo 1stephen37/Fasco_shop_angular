@@ -1,22 +1,22 @@
 <app-main-layout>
   <section class="content">
     <section id="section1" class="section1">
-      <h1 class="heading">Fashion</h1>
+      <h1 class="heading">Thời Trang</h1>
       <div class="flex direction">
-        <p class="">Home</p>
+        <p class="">Trang Chủ</p>
         <svg xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 7 9" fill="none">
           <path
             d="M0.538124 0.140893L0.413829 0.26517C0.331458 0.347542 0.331458 0.4811 0.413829 0.563489L3.85023 3.99991L0.413829 7.43632C0.331458 7.5187 0.331458 7.65225 0.413829 7.73464L0.538124 7.85892C0.620495 7.94129 0.754054 7.94129 0.836425 7.85892L4.54631 4.14906C4.62868 4.06669 4.62868 3.93313 4.54631 3.85074L0.836425 0.140893C0.754054 0.0585044 0.620495 0.0585044 0.538124 0.140893Z"
             fill="black" stroke="black" stroke-width="0.0175781"/>
         </svg>
-        <p class="">Fashion</p>
+        <p class="">Cửa Hàng</p>
       </div>
       <div class="box_product flex">
         <div class="filter">
-          <h1 class="heading">Filters</h1>
+          <h1 class="heading">Bộ Lọc</h1>
           <div class="size_filter">
             <h1 class="size_heading">
-              Size
+              Kích cỡ
             </h1>
             <div class="table_size flex">
               <a href="">S</a>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="color_filter">
-            <h1 class="color_heading">colors</h1>
+            <h1 class="color_heading">Màu sắc</h1>
             <div class="table_color_filter flex">
               <a href="#"></a>
               <a href="#"></a>
@@ -45,13 +45,13 @@
             </div>
           </div>
           <div class="price_filter">
-            <h1 class="price_heading">price</h1>
+            <h1 class="price_heading">Giá bán</h1>
             <div class="table_price_filter flex">
-              <a href="">$0-$50</a>
-              <a href="">$50-$100</a>
-              <a href="">$100-$150</a>
-              <a href="">$150-$200</a>
-              <a href="">$300-$400</a>
+              <a href="">0 - 100.000 VND</a>
+              <a href="">100.000 - 500.000 VND</a>
+              <a href="">500.000 - 1.000.000 VND</a>
+              <a href="">1.000.000 - 5.000.000 VND</a>
+              <a href="">5.000.000 - 10.000.000 VND</a>
             </div>
           </div>
         </div>
@@ -65,15 +65,19 @@
               </select>
             </label>
             <div class="icon flex text-[2rem]">
-              Sort by price
-              <a href="/page/shop/" data-sort="up" class="fa-solid fa-arrow-up-wide-short"></a>
-              <a href="/page/shop/" data-sort="down" class="fa-solid fa-arrow-down-wide-short"></a>
+              Sắp xếp theo giá
+              <a href="/page/shop/" data-sort="up">
+                <ng-icon size="20" name="faSolidArrowUpWideShort"/>
+              </a>
+              <a href="/page/shop/" data-sort="down">
+                <ng-icon size="20" name="faSolidArrowDownWideShort"/>
+              </a>
             </div>
           </div>
           <div class="main_content">
             @for (product of productsList; track product.id_product) {
               <app-box-product [id]="product.id_product" [name]="product.name" [image]="product.image"
-              [designer]="product.designer" [size]="['m']" [color]="product.color" [price]="15"
+              [designer]="product.designer" [size]="['m']" [color]="product.color" [price]="200000"
               />
             }
           </div>

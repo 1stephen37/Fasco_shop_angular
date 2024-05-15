@@ -9,6 +9,7 @@
   width: max-content;
   height: max-content;
   margin: 0 auto;
+  text-transform: capitalize;
 }
 
 .section5 .section5_content {
@@ -33,34 +34,34 @@
 }
 
 .section5 .line .img1_section5 {
-  left: -18rem;
+  left: -33rem;
   top: 0;
   transform: translateY(15%);
 }
 
 .section5 .line .img2_section5 {
-  left: 11.5rem;
+  left: -1rem;
 }
 
 .section5 .line .img3_section5 {
-  left: 37rem;
+  left: 24.5rem;
   transform: translateY(15%);
 }
 
 .section5 .line .img4_section5 {
-  left: 61rem;
+  left: 50rem;
 }
 
 .section5 .line .img5_section5 {
-  right: 41.5rem;
+  right: 27rem;
   transform: translateY(15%);
 }
 
 .section5 .line .img6_section5 {
-  right: 15.9rem;
+  right: 2rem;
 }
 
 .section5 .line .img7_section5 {
-  right: -16.1rem;
+  right: -30rem;
   transform: translateY(15%);
 }

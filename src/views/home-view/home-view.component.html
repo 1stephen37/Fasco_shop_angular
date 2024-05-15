@@ -6,20 +6,20 @@
       </div>
       <div class="banner_mid">
         <div class="banner_top">
-          <img loading="lazy" src="assets/images/section/imagedasd1.svg" alt="">
+          <img src="assets/images/section/imagedasd1.svg" alt="">
         </div>
         <div class="banner_middle">
           <div class="text_top">ULTIMATE</div>
           <div class="text_middle">SALE</div>
-          <div class="text_bottom">NEW COLLECTION</div>
-          <app-main-button href="/shop" class="mt-[2rem] mx-auto px-[5rem] py-[1rem] font-medium" message="SHOP NOW" />
+          <div class="text_bottom">BỘ SƯU TẬP MỚI</div>
+          <app-main-button href="/shop" class="mt-[2rem] mx-auto px-[5rem] py-[1rem] font-medium" message="MUA NGAY" />
         </div>
         <div class="banner_img_bottom">
-          <img loading="lazy" class="full" src="assets/images/section/imagedasdadsqw.svg" alt="">
+          <img class="full" src="assets/images/section/imagedasdadsqw.svg" alt="">
         </div>
       </div>
       <div class="banner_right flex">
-        <img loading="lazy" src="assets/images/section/image 227.svg" alt="">
+        <img src="assets/images/section/image 227.svg" alt="">
       </div>
     </section>
     <section class="section2 flex">
@@ -41,24 +41,24 @@
     </section>
     <app-section3/>
     <section class="section4">
-      <h1 class="heading">New Arrivals</h1>
+      <h1 class="heading capitalize">Sản phẩm mới</h1>
       <p class="section4_content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin
+        Là những sản phẩm mới nhất được chúng tôi đem đến cho khách hàng nhanh chóng nhất thị trường.
       </p>
       <div class="section4_nav flex">
         @for(category of categoriesList; track category.id_category) {
-        <a class="categories {{ parseInt(category.id_category) === selectedCategory ? 'active' : '' }}"
-           href="#" (click)="handleCategories(parseInt(category.id_category), $event)">{{category.name}}</a>
-      }
+        <a class="categories shadow-button-shadow capitalize {{ parseInt(category.id_category) === selectedCategory ? 'active' : '' }}"
+           href="#">{{category.name}}</a>
+        }
       </div>
       <div class="box-product">
-        <div class="product">
+        <div class="product shadow-box-shadow">
           <a href="#" class="link">
             <img src="assets/images/products/yoga-clothes.jpg" alt="">
           </a>
           <div class="flex top_content">
             <a href="#" class="name link" data-id="${product._id}">
-              product demo
+              sản phẩm mẫu
             </a>
             <div class="star">
               <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -74,24 +74,24 @@
             Daxuo
           </div>
           <div class="view">
-            10k Customer Reviews
+            10k Đánh Giá
           </div>
           <div class="flex bottom_content">
             <div class="price">
-              $19
+              200.000 VND
             </div>
             <div class="status">
-              Almost Sold Out
+              Sắp Hết Hàng
             </div>
           </div>
         </div>
-        <div class="product">
+        <div class="product shadow-box-shadow">
           <a href="#" class="link">
             <img src="assets/images/products/yoga-clothes.jpg" alt="">
           </a>
           <div class="flex top_content">
             <a href="#" class="name link" data-id="${product._id}">
-              product demo
+              sản phẩm mẫu
             </a>
             <div class="star">
               <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -107,24 +107,24 @@
             Daxuo
           </div>
           <div class="view">
-            10k Customer Reviews
+            10k Đánh Giá
           </div>
           <div class="flex bottom_content">
             <div class="price">
-              $19
+              200.000 VND
             </div>
             <div class="status">
-              Almost Sold Out
+              Sắp Hết Hàng
             </div>
           </div>
         </div>
-        <div class="product">
+        <div class="product shadow-box-shadow">
           <a href="#" class="link">
             <img src="assets/images/products/yoga-clothes.jpg" alt="">
           </a>
           <div class="flex top_content">
             <a href="#" class="name link" data-id="${product._id}">
-              product demo
+              sản phẩm mẫu
             </a>
             <div class="star">
               <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -140,24 +140,24 @@
             Daxuo
           </div>
           <div class="view">
-            10k Customer Reviews
+            10k Đánh Giá
           </div>
           <div class="flex bottom_content">
             <div class="price">
-              $19
+              200.000 VND
             </div>
             <div class="status">
-              Almost Sold Out
+              Sắp Hết Hàng
             </div>
           </div>
         </div>
-        <div class="product">
+        <div class="product shadow-box-shadow">
           <a href="#" class="link">
             <img src="assets/images/products/yoga-clothes.jpg" alt="">
           </a>
           <div class="flex top_content">
             <a href="#" class="name link" data-id="${product._id}">
-              product demo
+              sản phẩm mẫu
             </a>
             <div class="star">
               <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -173,24 +173,24 @@
             Daxuo
           </div>
           <div class="view">
-            10k Customer Reviews
+            10k Đánh Giá
           </div>
           <div class="flex bottom_content">
             <div class="price">
-              $19
+              200.000 VND
             </div>
             <div class="status">
-              Almost Sold Out
+              Sắp Hết Hàng
             </div>
           </div>
         </div>
-        <div class="product">
+        <div class="product shadow-box-shadow">
           <a href="#" class="link">
             <img src="assets/images/products/yoga-clothes.jpg" alt="">
           </a>
           <div class="flex top_content">
             <a href="#" class="name link" data-id="${product._id}">
-              product demo
+              sản phẩm mẫu
             </a>
             <div class="star">
               <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -206,24 +206,24 @@
             Daxuo
           </div>
           <div class="view">
-            10k Customer Reviews
+            10k Đánh Giá
           </div>
           <div class="flex bottom_content">
             <div class="price">
-              $19
+              200.000 VND
             </div>
             <div class="status">
-              Almost Sold Out
+              Sắp Hết Hàng
             </div>
           </div>
         </div>
-        <div class="product">
+        <div class="product shadow-box-shadow">
           <a href="#" class="link">
             <img src="assets/images/products/yoga-clothes.jpg" alt="">
           </a>
           <div class="flex top_content">
             <a href="#" class="name link" data-id="${product._id}">
-              product demo
+              sản phẩm mẫu
             </a>
             <div class="star">
               <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -239,25 +239,25 @@
             Daxuo
           </div>
           <div class="view">
-            10k Customer Reviews
+            10k Đánh Giá
           </div>
           <div class="flex bottom_content">
             <div class="price">
-              $19
+              200.000 VND
             </div>
             <div class="status">
-              Almost Sold Out
+              Sắp Hết Hàng
             </div>
           </div>
         </div>
       </div>
-      <app-main-button href="shop" message="view more" class="mt-[5rem] mx-auto px-[5rem] py-[1.3rem]" />
+      <app-main-button href="shop" message="xem thêm" class="mt-[5rem] mx-auto px-[5rem] py-[1.3rem]" />
     </section>
     <app-section5/>
     <section class="section6">
-      <h1 class="heading">This Is What Our Customers Say</h1>
+      <h1 class="heading capitalize">Những trải nghiệm của khách hàng</h1>
       <p class="section6_content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis
+        Đến với Fasco shop, bạn sẽ được trải nghiệm những dịch vụ tốt nhất.
       </p>
       <div class="card flex">
         <div class="image">
@@ -266,7 +266,7 @@
         </div>
         <div class="right">
           <div class="content_card">
-            "You won't regret it. I would like to personally thank you for your outstanding product. Absolutely wonderful!"
+            "Bạn sẽ không hối tiếc đâu. Tôi muốn đích thân cảm ơn bạn vì sản phẩm xuất sắc của bạn. Hoàn toàn tuyệt vời!"
           </div>
           <div class="star">
             <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
@@ -279,10 +279,10 @@
           </div>
           <div class="line"></div>
           <div class="name">
-            James K.
+            Nguyễn Thanh Hiếu.
           </div>
           <div class="job">
-            Traveler
+            Nhà Thám Hiểm - Lữ Hành
           </div>
         </div>
       </div>

@@ -44,6 +44,9 @@
 }
 
 #container .navbar .page .link p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 2.5rem;
   width: 4.5rem;
   height: 4.5rem;
@@ -55,7 +58,7 @@
 #container .navbar .page .link i {
   width: auto;
   font-size: 2rem;
-  line-height: 4.5rem;
+  line-height: 2rem ;
   color: #4FD1C5;
 }
 

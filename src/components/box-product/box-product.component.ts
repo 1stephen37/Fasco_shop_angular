@@ -1,13 +1,15 @@
 import {Component, Input} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {API} from "../../constants";
+import {RouterLink} from "@angular/router";
 
 
 @Component({
   selector: 'app-box-product',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    RouterLink
   ],
   templateUrl: './box-product.component.html',
   styleUrl: './box-product.component.css'
