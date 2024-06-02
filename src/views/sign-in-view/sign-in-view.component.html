@@ -18,17 +18,25 @@
           </div>
         </div>
         <div class="line">- Hoặc -</div>
-        <form class="formSignIn">
+        <form class="formSignIn" (ngSubmit)="onLogin()" [formGroup]="formSignIn">
           <label for="SignInEmail">
-            <input id="SignInEmail" type="text" placeholder="Email">
-            <span></span>
+            <input id="SignInEmail" formControlName="email" type="text" placeholder="Email">
+            @if (formSignIn.get('email')?.value === '' && formSignIn.get('email')?.touched && formSignIn.get('email')?.dirty) {
+              <span>Email không được để trống</span>
+            } @else if (!formSignIn.get('email')?.valid && formSignIn.get('email')?.touched && formSignIn.get('email')?.dirty) {
+              <span>Email phải đúng định dạng</span>
+            }
           </label>
           <label for="SignInPassword">
-            <input id="SignInPassword" type="password" placeholder="Mật Khẩu">
-            <span></span>
+            <input id="SignInPassword" formControlName="password" type="password" placeholder="Mật Khẩu">
+            @if (formSignIn.get('password')?.value === '' && formSignIn.get('password')?.touched && formSignIn.get('password')?.dirty) {
+              <span>Password không được để trống</span>
+            } @else if (!formSignIn.get('password')?.valid && formSignIn.get('password')?.touched && formSignIn.get('password')?.dirty) {
+              <span>Password phải có tối thiểu 6 kí tự</span>
+            }
             <i id="eye" class="fa-solid fa-eye-slash"></i>
           </label>
-          <span class="message_error"></span>
+          <span class="message_error" #message_error></span>
           <button type="submit" class="sign-in">Đăng Nhập</button>
           <a routerLink="/sign-up" routerLinkActive="active"
              ariaCurrentWhenActive="page" class="sign-up">Đăng Kí</a>
@@ -39,5 +47,6 @@
       <div class="footer">FASCO Terms & Codnitions</div>
     </div>
   </div>
+  <app-notification message="Đăng nhập thành công" />
 </app-account-layout>
 

@@ -12,41 +12,20 @@
       <h2>action</h2>
     </div>
     <div class="tbody">
-      <div id="row-user-660df809d4bc19032aee14a6" class="row">
-        <div>660df809d4bc19032aee14a6</div>
-        <div class="name-user-660df809d4bc19032aee14a6">tienuser</div>
-        <a class="img"><img class="img-user-660df809d4bc19032aee14a6" data-img="cat1712536659355-671915646.jpg" src="http://localhost:3000/images/uploads/cat1712536659355-671915646.jpg" alt=""></a>
-        <div class="email-user-660df809d4bc19032aee14a6">dienndtps32003&#64;fpt.edu.vn</div>
-        <div class="address-user-660df809d4bc19032aee14a6">50 washington DC</div>
-        <div class="phone-user-660df809d4bc19032aee14a6">0338015137</div>
-        <div class="role-user-660df809d4bc19032aee14a6">user</div>
-        <div><a data-id-user="660df809d4bc19032aee14a6" class="edit-user" href="admin/users">Edit</a> / <a data-id-user="660df809d4bc19032aee14a6" class="remove-user" href="#">Remove</a></div>
-        <div class="password-user-660df809d4bc19032aee14a6" style="display: none">$2b$10$U2WdO1K8SvD/8xT8FOO4ieQISWhLR6Sg4jAs2m0WbLvt.aQyJy3.m</div>
-      </div>
+      @for(user of userList; track user.id_user) {
+        <div id="row-user-660df809d4bc19032aee14a6" class="row">
+          <div>{{user.id_user}}</div>
+          <div class="name-user-660df809d4bc19032aee14a6">{{user.name}}</div>
+          <a class="img"><img class="img-user-660df809d4bc19032aee14a6" data-img="cat1712536659355-671915646.jpg" src="http://localhost:3000/images/uploads/cat1712536659355-671915646.jpg" alt=""></a>
+          <div class="email-user-660df809d4bc19032aee14a6">{{ user.email }}</div>
+          <div class="address-user-660df809d4bc19032aee14a6">{{ user.address }}</div>
+          <div class="phone-user-660df809d4bc19032aee14a6">{{ user.phone }}</div>
+          <div class="role-user-660df809d4bc19032aee14a6">{{roleUser[user.role]}}</div>
+          <div><a data-id-user="660df809d4bc19032aee14a6" class="edit-user" href="admin/users">Edit</a> / <a data-id-user="660df809d4bc19032aee14a6" class="remove-user" href="#">Remove</a></div>
+          <div class="password-user-660df809d4bc19032aee14a6" style="display: none">$2b$10$U2WdO1K8SvD/8xT8FOO4ieQISWhLR6Sg4jAs2m0WbLvt.aQyJy3.m</div>
+        </div>
+      }
 
-      <div id="row-user-6612dc99915c6819ae309e92" class="row">
-        <div>6612dc99915c6819ae309e92</div>
-        <div class="name-user-6612dc99915c6819ae309e92">tien admin</div>
-        <a class="img"><img class="img-user-6612dc99915c6819ae309e92" data-img="Green Teal &amp; Navy Geometric Modern Computer Programmer Code Editor Quotes for Facebook Post1712538199071-934225596.png" src="http://localhost:3000/images/uploads/Green Teal &amp; Navy Geometric Modern Computer Programmer Code Editor Quotes for Facebook Post1712538199071-934225596.png" alt=""></a>
-        <div class="email-user-6612dc99915c6819ae309e92">tienadmin&#64;gmail.com</div>
-        <div class="address-user-6612dc99915c6819ae309e92">100 washingtion DC</div>
-        <div class="phone-user-6612dc99915c6819ae309e92">033807511</div>
-        <div class="role-user-6612dc99915c6819ae309e92">admin</div>
-        <div><a data-id-user="6612dc99915c6819ae309e92" class="edit-user" href="admin/users">Edit</a> / <a data-id-user="6612dc99915c6819ae309e92" class="remove-user" href="#">Remove</a></div>
-        <div class="password-user-6612dc99915c6819ae309e92" style="display: none">$2b$10$gz0KElrJ9HQrBFT.3KG1Ru30W8OvKwXFmpxQ7m5Yny5j6qddOoc1m</div>
-      </div>
-
-      <div id="row-user-661468b1903a0790c2491c86" class="row">
-        <div>661468b1903a0790c2491c86</div>
-        <div class="name-user-661468b1903a0790c2491c86">user test 1</div>
-        <a class="img"><img class="img-user-661468b1903a0790c2491c86" data-img="Yáº¿n_n1712613552898-490510830.jpg" src="http://localhost:3000/images/uploads/Yáº¿n_n1712613552898-490510830.jpg" alt=""></a>
-        <div class="email-user-661468b1903a0790c2491c86">usertest1&#64;gmail.com</div>
-        <div class="address-user-661468b1903a0790c2491c86">255 washington DC</div>
-        <div class="phone-user-661468b1903a0790c2491c86">0338015131</div>
-        <div class="role-user-661468b1903a0790c2491c86">user</div>
-        <div><a data-id-user="661468b1903a0790c2491c86" class="edit-user" href="admin/users">Edit</a> / <a data-id-user="661468b1903a0790c2491c86" class="remove-user" href="#">Remove</a></div>
-        <div class="password-user-661468b1903a0790c2491c86" style="display: none">$2b$10$hU2uay1NStwek2KlgOIhpO2YFMNPFUoCCc..4Nru1qt2.DTGKDnPi</div>
-      </div>
     </div>
   </div>
 </app-admin-layout>

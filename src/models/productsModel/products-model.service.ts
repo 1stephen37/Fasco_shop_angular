@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {API, tableName} from "../../constants";
-import axios from "axios";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +10,40 @@ export class ProductsModelService {
   endPoint: string;
   url: string;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.collection = tableName.products;
     this.endPoint = API.server;
     this.url = this.endPoint + this.collection;
   }
 
-  async findProductsByCategoryAndPage(idCategory: number, page: number, limit: number = 6): Promise<Product[]> {
+  findProductsByCategoryAndPage(idCategory: number, page: number, limit: number = 6, sortBy?: string, sort?: string): Promise<{
+    paging: any,
+    data: Product[]
+  }> {
     let offset = (page - 1) * limit;
-    const res = await axios.get(this.url + `?id_category=${idCategory}&offset=${offset}&limit=${limit}`)
-    return res.data;
+    return new Promise((resolve, reject) => {
+      this.http.get<{
+        paging: any,
+        data: Product[]
+      }>(this.url + `?idCategory=${idCategory}&offset=${offset}&limit=${limit}&${sortBy ? `sortBy=${sortBy}` : ''}&${sortBy ? `sort=${sort}` : ''}`).subscribe(
+        (data) => {
+          resolve({
+            paging: data.paging,
+            data: data.data
+          });
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  };
+
+  findProductById(id: string): Promise<Product> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Product>(this.url + `/${id}`).subscribe((response) => {
+        resolve(response)
+      })
+    })
   }
 }

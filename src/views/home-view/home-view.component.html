@@ -2,7 +2,7 @@
   <section class="content">
     <section class="section1 flex">
       <div class="banner_left flex">
-        <img loading="lazy" class="full" src="assets/images/section/image 2 28.svg" alt="">
+        <img loading="eager" class="full" src="assets/images/section/image 2 28.svg" alt="">
       </div>
       <div class="banner_mid">
         <div class="banner_top">
@@ -12,14 +12,14 @@
           <div class="text_top">ULTIMATE</div>
           <div class="text_middle">SALE</div>
           <div class="text_bottom">BỘ SƯU TẬP MỚI</div>
-          <app-main-button href="/shop" class="mt-[2rem] mx-auto px-[5rem] py-[1rem] font-medium" message="MUA NGAY" />
+          <app-main-button href="/shop" class="mt-[2rem] mx-auto px-[5rem] py-[1rem] font-medium" message="MUA NGAY"/>
         </div>
         <div class="banner_img_bottom">
           <img class="full" src="assets/images/section/imagedasdadsqw.svg" alt="">
         </div>
       </div>
       <div class="banner_right flex">
-        <img src="assets/images/section/image 227.svg" alt="">
+        <img loading="eager" src="assets/images/section/image 227.svg" alt="">
       </div>
     </section>
     <section class="section2 flex">
@@ -46,212 +46,68 @@
         Là những sản phẩm mới nhất được chúng tôi đem đến cho khách hàng nhanh chóng nhất thị trường.
       </p>
       <div class="section4_nav flex">
-        @for(category of categoriesList; track category.id_category) {
-        <a class="categories shadow-button-shadow capitalize {{ parseInt(category.id_category) === selectedCategory ? 'active' : '' }}"
-           href="#">{{category.name}}</a>
+        @if (categoriesList && categoriesList.length > 0) {
+          @for (category of categoriesList; track category.id_category) {
+            <a (click)="handleCategories(category.id_category, $event)"
+               class="categories shadow-button-shadow capitalize {{ parseInt(category.id_category) === selectedCategory ? 'active' : '' }}"
+               href="#">{{ category.name }}</a>
+          }
+        } @else {
+          <div class="text-center text-[2rem]">Đang tải dữ liệu ...</div>
         }
       </div>
       <div class="box-product">
-        <div class="product shadow-box-shadow">
-          <a href="#" class="link">
-            <img src="assets/images/products/yoga-clothes.jpg" alt="">
-          </a>
-          <div class="flex top_content">
-            <a href="#" class="name link" data-id="${product._id}">
-              sản phẩm mẫu
-            </a>
-            <div class="star">
-              <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
-              </svg>
+        @if (productsList && productsList.length > 0) {
+          @for (product of productsList; track product.id_product) {
+            <div class="product shadow-box-shadow">
+              <a (click)="handleDetail(product.name, product.id_product)" class="link cursor-pointer select-none">
+                <img fill loading="lazy" ngSrc="{{API.image}}images/uploads/{{product.image}}" alt="">
+              </a>
+              <div class="flex top_content">
+                <a (click)="handleDetail(product.name, product.id_product)" class="name link cursor-pointer select-none" data-id="${product._id}">
+                  {{ product.name }}
+                </a>
+                <div class="star">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z"
+                          fill="#FCA120"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z"
+                          fill="#FCA120"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z"
+                          fill="#FCA120"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z"
+                          fill="#FCA120"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z"
+                          fill="#FCA120"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="author">
+                {{ product.designer }}
+              </div>
+              <div class="view">
+                {{ product.review }} Đánh Giá
+              </div>
+              <div class="flex bottom_content">
+                <div class="price">
+                  {{ transformCurrency(product.properties[0].price) }}
+                </div>
+                <div class="status">
+                  Sắp Hết Hàng
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="author">
-            Daxuo
-          </div>
-          <div class="view">
-            10k Đánh Giá
-          </div>
-          <div class="flex bottom_content">
-            <div class="price">
-              200.000 VND
-            </div>
-            <div class="status">
-              Sắp Hết Hàng
-            </div>
-          </div>
-        </div>
-        <div class="product shadow-box-shadow">
-          <a href="#" class="link">
-            <img src="assets/images/products/yoga-clothes.jpg" alt="">
-          </a>
-          <div class="flex top_content">
-            <a href="#" class="name link" data-id="${product._id}">
-              sản phẩm mẫu
-            </a>
-            <div class="star">
-              <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
-              </svg>
-            </div>
-          </div>
-          <div class="author">
-            Daxuo
-          </div>
-          <div class="view">
-            10k Đánh Giá
-          </div>
-          <div class="flex bottom_content">
-            <div class="price">
-              200.000 VND
-            </div>
-            <div class="status">
-              Sắp Hết Hàng
-            </div>
-          </div>
-        </div>
-        <div class="product shadow-box-shadow">
-          <a href="#" class="link">
-            <img src="assets/images/products/yoga-clothes.jpg" alt="">
-          </a>
-          <div class="flex top_content">
-            <a href="#" class="name link" data-id="${product._id}">
-              sản phẩm mẫu
-            </a>
-            <div class="star">
-              <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
-              </svg>
-            </div>
-          </div>
-          <div class="author">
-            Daxuo
-          </div>
-          <div class="view">
-            10k Đánh Giá
-          </div>
-          <div class="flex bottom_content">
-            <div class="price">
-              200.000 VND
-            </div>
-            <div class="status">
-              Sắp Hết Hàng
-            </div>
-          </div>
-        </div>
-        <div class="product shadow-box-shadow">
-          <a href="#" class="link">
-            <img src="assets/images/products/yoga-clothes.jpg" alt="">
-          </a>
-          <div class="flex top_content">
-            <a href="#" class="name link" data-id="${product._id}">
-              sản phẩm mẫu
-            </a>
-            <div class="star">
-              <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
-              </svg>
-            </div>
-          </div>
-          <div class="author">
-            Daxuo
-          </div>
-          <div class="view">
-            10k Đánh Giá
-          </div>
-          <div class="flex bottom_content">
-            <div class="price">
-              200.000 VND
-            </div>
-            <div class="status">
-              Sắp Hết Hàng
-            </div>
-          </div>
-        </div>
-        <div class="product shadow-box-shadow">
-          <a href="#" class="link">
-            <img src="assets/images/products/yoga-clothes.jpg" alt="">
-          </a>
-          <div class="flex top_content">
-            <a href="#" class="name link" data-id="${product._id}">
-              sản phẩm mẫu
-            </a>
-            <div class="star">
-              <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
-              </svg>
-            </div>
-          </div>
-          <div class="author">
-            Daxuo
-          </div>
-          <div class="view">
-            10k Đánh Giá
-          </div>
-          <div class="flex bottom_content">
-            <div class="price">
-              200.000 VND
-            </div>
-            <div class="status">
-              Sắp Hết Hàng
-            </div>
-          </div>
-        </div>
-        <div class="product shadow-box-shadow">
-          <a href="#" class="link">
-            <img src="assets/images/products/yoga-clothes.jpg" alt="">
-          </a>
-          <div class="flex top_content">
-            <a href="#" class="name link" data-id="${product._id}">
-              sản phẩm mẫu
-            </a>
-            <div class="star">
-              <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
-              </svg>
-            </div>
-          </div>
-          <div class="author">
-            Daxuo
-          </div>
-          <div class="view">
-            10k Đánh Giá
-          </div>
-          <div class="flex bottom_content">
-            <div class="price">
-              200.000 VND
-            </div>
-            <div class="status">
-              Sắp Hết Hàng
-            </div>
-          </div>
-        </div>
+          }
+        } @else {
+          <div class="text-center text-[2rem] col-span-3">Đang tải dữ liệu ...</div>
+        }
       </div>
-      <app-main-button href="shop" message="xem thêm" class="mt-[5rem] mx-auto px-[5rem] py-[1.3rem]" />
+      <app-main-button href="shop" message="xem thêm" class="mt-[5rem] mx-auto px-[5rem] py-[1.3rem]"/>
     </section>
     <app-section5/>
     <section class="section6">
@@ -266,15 +122,26 @@
         </div>
         <div class="right">
           <div class="content_card">
-            "Bạn sẽ không hối tiếc đâu. Tôi muốn đích thân cảm ơn bạn vì sản phẩm xuất sắc của bạn. Hoàn toàn tuyệt vời!"
+            "Bạn sẽ không hối tiếc đâu. Tôi muốn đích thân cảm ơn bạn vì sản phẩm xuất sắc của bạn. Hoàn toàn tuyệt
+            vời!"
           </div>
           <div class="star">
             <svg xmlns="http://www.w3.org/2000/svg" width="95" height="19" viewBox="0 0 95 19" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z" fill="#FCA120"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z" fill="#FCA120"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z" fill="#FCA120"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z" fill="#FCA120"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z" fill="#FCA120"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.6646 7.12771L9.5 0L7.33536 7.12771H0L5.93479 11.742L3.73214 19L9.5 14.5146L15.2679 19L13.0652 11.742L19 7.12771H11.6646Z"
+                    fill="#FCA120"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M30.6646 7.12771L28.5 0L26.3354 7.12771H19L24.9348 11.742L22.7321 19L28.5 14.5146L34.2679 19L32.0652 11.742L38 7.12771H30.6646Z"
+                    fill="#FCA120"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M49.6646 7.12771L47.5 0L45.3354 7.12771H38L43.9348 11.742L41.7321 19L47.5 14.5146L53.2679 19L51.0652 11.742L57 7.12771H49.6646Z"
+                    fill="#FCA120"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M68.6646 7.12771L66.5 0L64.3354 7.12771H57L62.9348 11.742L60.7321 19L66.5 14.5146L72.2679 19L70.0652 11.742L76 7.12771H68.6646Z"
+                    fill="#FCA120"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M87.6646 7.12771L85.5 0L83.3354 7.12771H76L81.9348 11.742L79.7321 19L85.5 14.5146L91.2679 19L89.0652 11.742L95 7.12771H87.6646Z"
+                    fill="#FCA120"/>
             </svg>
           </div>
           <div class="line"></div>
@@ -290,15 +157,19 @@
         <g filter="url(#filter0_d_105_98)">
           <circle cx="39" cy="35" r="24" transform="rotate(180 39 35)" fill="white"/>
         </g>
-        <path d="M41.9999 42L34.9999 35L41.9999 28" stroke="#B6B6B6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M41.9999 42L34.9999 35L41.9999 28" stroke="#B6B6B6" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round"/>
         <g filter="url(#filter1_d_105_98)">
           <circle cx="103" cy="35" r="24" fill="white"/>
         </g>
-        <path d="M100 28L107 35L100 42" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M100 28L107 35L100 42" stroke="black" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round"/>
         <defs>
-          <filter id="filter0_d_105_98" x="0" y="0" width="78" height="78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter id="filter0_d_105_98" x="0" y="0" width="78" height="78" filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                           result="hardAlpha"/>
             <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_105_98"/>
             <feOffset dy="4"/>
             <feGaussianBlur stdDeviation="7"/>
@@ -306,9 +177,11 @@
             <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_105_98"/>
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_105_98" result="shape"/>
           </filter>
-          <filter id="filter1_d_105_98" x="64.0001" y="0" width="78" height="78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter id="filter1_d_105_98" x="64.0001" y="0" width="78" height="78" filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                           result="hardAlpha"/>
             <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_105_98"/>
             <feOffset dy="4"/>
             <feGaussianBlur stdDeviation="7"/>

@@ -1,20 +1,23 @@
-
 <div class="product_box">
-  <a routerLink="/detail" class="img link">
-    <img class="full" ngSrc="assets/images/products/{{image}}" priority alt="" fill>
+  <a (click)="handleDetail(name, id)" class="img link">
+    <img class="full" ngSrc="assets/images/products/{{image}}" [alt]="name" fill>
   </a>
   <h1 class="name flex">
     <a class="link capitalize font-bold" href="detail/{{id}}">
       {{ name.length < 15 ? name : name.slice(0, 15) + '...' }}
     </a>
-    <span class="uppercase">{{ size }}</span>
+    <span class="uppercase">
+      @for (pro of properties; track pro) {
+        {{ pro.size }}
+      }
+    </span>
   </h1>
-  <div class="price">
-    {{price}} VND
+  <div class="price text-red-700 font-medium">
+    {{ transformCurrency(price) }}
   </div>
   <div class="tag flex">
     <div [style.background]="color"></div>
-    <span class="text-[1.8rem]">{{designer}}</span>
+    <span class="text-[1.8rem]">{{ designer }}</span>
   </div>
 </div>
 

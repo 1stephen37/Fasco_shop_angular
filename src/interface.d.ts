@@ -7,22 +7,30 @@ interface Category {
 }
 
 interface Product {
-  id_product: number;
-  id_category: number;
-  id_sale: number;
+  id_product: string;
+  id_category: string;
   name: string;
   image: string;
   designer: string;
   review: number;
-  quantity: number;
   color: string;
-  sale: number;
+  sale_off: number;
   status: number;
   createdAt: string | Date;
   updatedAt: string | Date;
   properties : {
-    size? : string;
-    price? : number;
+    size : string;
+    quantity : number;
+    price : number;
   }[];
   images : string[];
 }
+
+interface User {
+
+}
+
+interface User {
+
+}
+

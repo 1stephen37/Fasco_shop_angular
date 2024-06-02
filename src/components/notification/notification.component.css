@@ -1,0 +1,24 @@
+#notification {
+  display: flex;
+  position: fixed;
+  top: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 99;
+  right: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+}
+
+#notification .container-notification {
+  height: max-content;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2% 3%;
+}
+

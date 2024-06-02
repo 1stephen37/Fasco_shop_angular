@@ -58,7 +58,7 @@
         <div class="main_box_product">
           <div class="top_content flex">
             <label class="top_header flex">
-              <select id="categories_shop" class="text-[2rem]">
+              <select (change)="handleSwitchCategory($event)" id="categories_shop" class="text-[2rem]">
                 @for (category of categoriesList; track category.id_category) {
                   <option class="text-[2rem]" value="{{category.id_category}}">{{ category.name }}</option>
                 }
@@ -66,10 +66,10 @@
             </label>
             <div class="icon flex text-[2rem]">
               Sắp xếp theo giá
-              <a href="/page/shop/" data-sort="up">
+              <a (click)="handleSortDownProduct()" data-sort="up">
                 <ng-icon size="20" name="faSolidArrowUpWideShort"/>
               </a>
-              <a href="/page/shop/" data-sort="down">
+              <a (click)="handleSortUpProduct()" data-sort="down">
                 <ng-icon size="20" name="faSolidArrowDownWideShort"/>
               </a>
             </div>
@@ -77,7 +77,7 @@
           <div class="main_content">
             @for (product of productsList; track product.id_product) {
               <app-box-product [id]="product.id_product" [name]="product.name" [image]="product.image"
-              [designer]="product.designer" [size]="['m']" [color]="product.color" [price]="200000"
+              [designer]="product.designer" [properties]="product.properties" [color]="product.color" [price]="product.properties[0].price"
               />
             }
           </div>

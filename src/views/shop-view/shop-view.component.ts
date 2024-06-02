@@ -7,8 +7,9 @@ import {CategoriesModelService} from "../../models/categoriesModel/categories-mo
 import {ProductsModelService} from "../../models/productsModel/products-model.service";
 import {NgOptimizedImage} from "@angular/common";
 import {BoxProductComponent} from "../../components/box-product/box-product.component";
-import { faSolidArrowUpWideShort, faSolidArrowDownWideShort} from '@ng-icons/font-awesome/solid'
+import {faSolidArrowUpWideShort, faSolidArrowDownWideShort} from '@ng-icons/font-awesome/solid'
 import {faUser} from "@ng-icons/font-awesome/regular";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shop-view',
@@ -28,157 +29,17 @@ import {faUser} from "@ng-icons/font-awesome/regular";
   })]
 })
 export class ShopViewComponent {
-  // private CategoriesModel = inject(CategoriesModelService);
-  // private ProductsModel = inject(ProductsModelService);
-  categoriesList: Category[] = [
-    {
-      id_category: "1",
-      name: 'thời trang nữ',
-      updatedAt: "",
-      createdAt: ""
-    },
-    {
-      id_category: "2",
-      name: 'thời trang nam',
-      updatedAt: "",
-      createdAt: ""
-    },
-    {
-      id_category: "3",
-      name: 'phụ kiện nam',
-      updatedAt: "",
-      createdAt: ""
-    },
-    {
-      id_category: "4",
-      name: 'phụ kiện nữ',
-      updatedAt: "",
-      createdAt: ""
-    },
-    {
-      id_category: "5",
-      name: 'đặc biệt',
-      updatedAt: "",
-      createdAt: ""
-    }
-  ];
-  productsList: Product[] = [
-    {
-      id_product: 1,
-      id_category: 1,
-      name: "sản phẩm mẫu",
-      properties: [{}],
-      designer: "Daxuo",
-      color: "red",
-      image: "product7.svg",
-      images: [],
-      id_sale: 1,
-      sale: 10,
-      review: 0,
-      status: 1,
-      quantity: 200,
-      createdAt: "",
-      updatedAt: ""
-    },
-    {
-      id_product: 1,
-      id_category: 1,
-      name: "sản phẩm mẫu",
-      properties: [{}],
-      designer: "Daxuo",
-      color: "red",
-      image: "product7.svg",
-      images: [],
-      id_sale: 1,
-      sale: 10,
-      review: 0,
-      status: 1,
-      quantity: 200,
-      createdAt: "",
-      updatedAt: ""
-    },
-    {
-      id_product: 1,
-      id_category: 1,
-      name: "sản phẩm mẫu",
-      properties: [{}],
-      designer: "Daxuo",
-      color: "red",
-      image: "product7.svg",
-      images: [],
-      id_sale: 1,
-      sale: 10,
-      review: 0,
-      status: 1,
-      quantity: 200,
-      createdAt: "",
-      updatedAt: ""
-    },
-    {
-      id_product: 1,
-      id_category: 1,
-      name: "sản phẩm mẫu",
-      properties: [{}],
-      designer: "Daxuo",
-      color: "red",
-      image: "product7.svg",
-      images: [],
-      id_sale: 1,
-      sale: 10,
-      review: 0,
-      status: 1,
-      quantity: 200,
-      createdAt: "",
-      updatedAt: ""
-    },
-    {
-      id_product: 1,
-      id_category: 1,
-      name: "sản phẩm mẫu",
-      properties: [{}],
-      designer: "Daxuo",
-      color: "red",
-      image: "product7.svg",
-      images: [],
-      id_sale: 1,
-      sale: 10,
-      review: 0,
-      status: 1,
-      quantity: 200,
-      createdAt: "",
-      updatedAt: ""
-    },
-    {
-      id_product: 1,
-      id_category: 1,
-      name: "sản phẩm mẫu",
-      properties: [{}],
-      designer: "Daxuo",
-      color: "red",
-      image: "product7.svg",
-      images: [],
-      id_sale: 1,
-      sale: 10,
-      review: 0,
-      status: 1,
-      quantity: 200,
-      createdAt: "",
-      updatedAt: ""
-    }
-  ];
+  private CategoriesModel = inject(CategoriesModelService);
+  private ProductsModel = inject(ProductsModelService);
+  page: number = 1;
+  limit: number = 6;
+  selectedCategory!: number;
+  categoriesList!: Category[];
+  productsList!: Product[];
   sizes: any[] = [];
 
-  constructor() {
-    // this.CategoriesModel.findAllCategories()
-    //   .then(categories => {
-    //     this.categoriesList = categories;
-    //   })
-    //   .catch(err => console.log(err));
-    // this.ProductsModel.findProductsByCategoryAndPage(1, 1, 6)
-    //   .then(products => {
-    //     this.productsList = products;
-    //   })
-    //   .catch(err => console.log(err));
+  constructor(private router : Router) {
+
     // for (let key in this.productsList) {
     //   console.log(this.productsList)
     //   this.sizes.push({
@@ -187,5 +48,47 @@ export class ShopViewComponent {
     // console.log(this.sizes)
     // }
   }
+
+  ngOnInit() {
+    this.CategoriesModel.findAllCategories()
+      .then(categories => {
+        this.categoriesList = categories as Category[];
+        if (this.categoriesList.length > 0) this.selectedCategory = parseInt(this.categoriesList[0].id_category);
+        this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit)
+          .then((products) => {
+            this.productsList = products.data as Product[];
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleSwitchCategory(event: any) {
+    console.log(event.target.value);
+    this.selectedCategory = event.target.value;
+    this.page = 1;
+    this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit)
+      .then((data) => {
+        this.productsList = data.data;
+      })
+      .catch((error) => console.log(error));
+  }
+
+  handleSortUpProduct() {
+    this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit, 'price', 'asc')
+      .then((data) => {
+        this.productsList = data.data;
+      })
+      .catch((error) => console.log(error));
+  }
+
+  handleSortDownProduct() {
+    this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit, 'price', 'desc')
+      .then((data) => {
+        this.productsList = data.data;
+      })
+      .catch((error) => console.log(error));
+  }
+
 
 }
