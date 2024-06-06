@@ -1,11 +1,12 @@
 import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
 import {AccountLayoutComponent} from "../../layouts/account-layout/account-layout.component";
 import {NgOptimizedImage} from "@angular/common";
-import {NgIcon} from "@ng-icons/core";
+import {NgIcon, provideIcons} from "@ng-icons/core";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UsersModelService} from "../../models/usersModel/users-model.service";
 import {NotificationComponent} from "../../components/notification/notification.component";
+import { faSolidEye, faSolidEyeLowVision } from '@ng-icons/font-awesome/solid'
 
 @Component({
   selector: 'app-sign-in-view',
@@ -21,12 +22,18 @@ import {NotificationComponent} from "../../components/notification/notification.
     NotificationComponent
   ],
   templateUrl: './sign-in-view.component.html',
-  styleUrl: './sign-in-view.component.css'
+  styleUrl: './sign-in-view.component.css',
+  viewProviders: [provideIcons({
+    faSolidEye, faSolidEyeLowVision
+  })]
 })
 export class SignInViewComponent {
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   @ViewChild('message_error') errorMessageSpan!: ElementRef;
+  @ViewChild('password') passwordInput!: ElementRef;
+  isPasswordOrText: boolean = false;
   formSignIn!: FormGroup;
+  href: string = '/';
 
   ngOnInit() {
     this.formSignIn = new FormGroup({
@@ -49,10 +56,12 @@ export class SignInViewComponent {
       }
       this.UsersModel.SignIn(user)
         .then((data) => {
-          localStorage.setItem('user', JSON.stringify({
-            token: data
-          }));
+          localStorage.setItem('user', JSON.stringify(data));
+          localStorage.setItem('isLogin', JSON.stringify(true));
           this.errorMessageSpan.nativeElement.style.display = 'none';
+          if(data.isAdmin) {
+            this.href = '/admin/dashboard'
+          }
           this.notificationComponent.showNotification();
         })
         .catch((error : Error | any) => {
@@ -67,4 +76,8 @@ export class SignInViewComponent {
     }
   }
 
+  switchPasswordOrText() {
+    this.isPasswordOrText = !this.isPasswordOrText;
+    if(this.isPasswordOrText) this.passwordInput.nativeElement.type = 'text'; else this.passwordInput.nativeElement.type = 'password';
+  }
 }

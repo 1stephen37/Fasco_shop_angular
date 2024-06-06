@@ -100,10 +100,14 @@
   gap: 2.2rem;
 }
 
-.main_cart .tbody .row .product img {
-  object-fit: cover;
+.main_cart .tbody .row .product .img {
+  position: relative;
   width: 16.8rem;
   height: 22.5rem;
+}
+
+.main_cart .tbody .row .product .img img {
+  object-fit: cover;
   border-radius: 0.5rem;
 }
 
@@ -142,6 +146,7 @@
   text-decoration-line: underline;
   font-weight: 400;
   line-height: 4.2rem;
+  user-select: none;
 }
 
 .main_cart .tbody .row .price {
@@ -167,12 +172,15 @@
   color: #8A8A8A;
   font-weight: 400;
   line-height: normal;
+  user-select: none;
 }
 
 .main_cart .tbody .row .quantity_cart a {
   font-size: 2.5rem;
   color: #171717;
   font-weight: 500;
+  cursor: pointer;
+  user-select: none;
 }
 
 .main_cart .tbody .row .total {

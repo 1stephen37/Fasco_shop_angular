@@ -4,39 +4,30 @@
       <h2>id</h2>
       <h2>Code</h2>
       <h2>Discount</h2>
+      <h2>Max discount</h2>
       <h2>Date end</h2>
       <h2>Min amount</h2>
       <h2>expired</h2>
       <h2>action</h2>
     </div>
     <div class="tbody">
-      <div class="row" id="row-6614722b10ebdad8860b8b86">
-        <div class="id-6614722b10ebdad8860b8b86">6614722b10ebdad8860b8b86</div>
-        <div class="code-6614722b10ebdad8860b8b86">sale10</div>
-        <div class="discount-6614722b10ebdad8860b8b86">10%</div>
-        <div class="date_end-6614722b10ebdad8860b8b86">2024-04-27</div>
-        <div class="min_amount-6614722b10ebdad8860b8b86">100$</div>
-        <div class="expired-6614722b10ebdad8860b8b86">false</div>
-        <div>
-          <a data-id="6614722b10ebdad8860b8b86" class="edit" href="#">Edit</a>
-          /
-          <a data-id="6614722b10ebdad8860b8b86" class="remove" href="#">Remove</a>
+      @for(voucher of vouchersList; track voucher.id_voucher) {
+        <div class="row" >
+          <div>{{voucher.id_voucher}}</div>
+          <div>{{voucher.code}}</div>
+          <div>{{voucher.discount}}%</div>
+          <div>{{transformCurrency(voucher.max_discount)}}</div>
+          <div>{{ voucher.end_date }}</div>
+          <div>{{ transformCurrency(voucher.max_discount)}}</div>
+          <div>{{voucher.expired}}</div>
+          <div>
+            <a class="edit" href="#">Edit</a>
+            /
+            <a class="remove" href="#">Remove</a>
+          </div>
         </div>
-      </div>
+      }
 
-      <div class="row" id="row-6614749010ebdad8860b8b9f">
-        <div class="id-6614749010ebdad8860b8b9f">6614749010ebdad8860b8b9f</div>
-        <div class="code-6614749010ebdad8860b8b9f">sale20</div>
-        <div class="discount-6614749010ebdad8860b8b9f">20%</div>
-        <div class="date_end-6614749010ebdad8860b8b9f">2024-05-11</div>
-        <div class="min_amount-6614749010ebdad8860b8b9f">200$</div>
-        <div class="expired-6614749010ebdad8860b8b9f">false</div>
-        <div>
-          <a data-id="6614749010ebdad8860b8b9f" class="edit" href="#">Edit</a>
-          /
-          <a data-id="6614749010ebdad8860b8b9f" class="remove" href="#">Remove</a>
-        </div>
-      </div>
     </div>
   </div>
 </app-admin-layout>

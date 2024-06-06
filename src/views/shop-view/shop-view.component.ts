@@ -36,42 +36,39 @@ export class ShopViewComponent {
   selectedCategory!: number;
   categoriesList!: Category[];
   productsList!: Product[];
-  sizes: any[] = [];
+  productListLength! : number;
+  pageLength!: number;
 
-  constructor(private router : Router) {
-
-    // for (let key in this.productsList) {
-    //   console.log(this.productsList)
-    //   this.sizes.push({
-    //     [this.productsList[key].id_product]: this.productsList[key].properties.map(p => p.size)
-    //   });
-    // console.log(this.sizes)
-    // }
-  }
+  constructor(private router : Router) {}
 
   ngOnInit() {
     this.CategoriesModel.findAllCategories()
       .then(categories => {
         this.categoriesList = categories as Category[];
         if (this.categoriesList.length > 0) this.selectedCategory = parseInt(this.categoriesList[0].id_category);
-        this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit)
-          .then((products) => {
-            this.productsList = products.data as Product[];
-          })
-          .catch(err => console.log(err));
+        this.handleGetProduct();
       })
       .catch(err => console.log(err));
   }
 
+  handleGetProduct() {
+    this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit)
+      .then((products) => {
+        this.productListLength = products.paging.fullProductOfCategory;
+        this.pageLength = Math.ceil(this.productListLength / this.limit);
+        this.productsList = products.data as Product[];
+      })
+      .catch(err => console.log(err));
+  }
+
+  range(n: number) {
+    return Array.from({length: n}, (_, i) => i + 1);
+  }
+
   handleSwitchCategory(event: any) {
-    console.log(event.target.value);
     this.selectedCategory = event.target.value;
     this.page = 1;
-    this.ProductsModel.findProductsByCategoryAndPage(this.selectedCategory, this.page, this.limit)
-      .then((data) => {
-        this.productsList = data.data;
-      })
-      .catch((error) => console.log(error));
+    this.handleGetProduct();
   }
 
   handleSortUpProduct() {
@@ -90,5 +87,9 @@ export class ShopViewComponent {
       .catch((error) => console.log(error));
   }
 
-
+  handleSwitchPage(page : number) {
+    this.page = page;
+    window.scrollTo(0, 200);
+    this.handleGetProduct();
+  }
 }

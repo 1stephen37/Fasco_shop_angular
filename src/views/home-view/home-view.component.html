@@ -61,7 +61,7 @@
           @for (product of productsList; track product.id_product) {
             <div class="product shadow-box-shadow">
               <a (click)="handleDetail(product.name, product.id_product)" class="link cursor-pointer select-none">
-                <img fill loading="lazy" ngSrc="{{API.image}}images/uploads/{{product.image}}" alt="">
+                <img fill loading="lazy" [ngSrc]="API.image + product.image" alt="">
               </a>
               <div class="flex top_content">
                 <a (click)="handleDetail(product.name, product.id_product)" class="name link cursor-pointer select-none" data-id="${product._id}">

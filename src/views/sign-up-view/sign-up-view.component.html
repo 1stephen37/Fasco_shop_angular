@@ -18,33 +18,60 @@
           </div>
         </div>
         <div class="line">- Hoặc -</div>
-        <form class="formSignUp">
+        <form class="formSignUp" [formGroup]="SignUpForm" (ngSubmit)="onSignUp()">
           <div class="input">
             <label for="SignUpName">
-              <input type="text" id="SignUpName" placeholder="Họ Tên">
-              <span class="error"></span>
+              <input type="text" id="SignUpName" name="name" formControlName="name" placeholder="Họ Tên">
+              @if(!SignUpForm.get('name')?.valid && SignUpForm.get('name')?.touched) {
+                <span class="error">bạn phải nhập tên tối thiểu 6 kí tự</span>
+              } @else {
+                <span class="error"></span>
+              }
             </label>
             <label for="SignUpAddress">
-              <input type="text" id="SignUpAddress" placeholder="Địa Chỉ">
-              <span class="error"></span>
+              <input type="text" id="SignUpAddress" name="address" formControlName="address" placeholder="Địa Chỉ">
+              @if(!SignUpForm.get('address')?.valid && SignUpForm.get('address')?.touched) {
+                <span class="error">bạn phải nhập địa chỉ tối thiểu 10 kí tự</span>
+              } @else {
+                <span class="error"></span>
+              }
+              <span #errorAddress class="error"></span>
             </label>
             <label for="SignUpEmail">
-              <input type="email" autocomplete="username" id="SignUpEmail" placeholder="Địa Chỉ Email">
-              <span class="error"></span>
+              <input type="email" id="SignUpEmail" name="email" formControlName="email" placeholder="Địa Chỉ Email">
+              @if(!SignUpForm.get('email')?.valid && SignUpForm.get('email')?.touched && SignUpForm.get('email')?.dirty) {
+                <span class="error">bạn phải nhập địa chỉ Email đúng định dạng</span>
+              } @else {
+                <span class="error"></span>
+              }
             </label>
             <label for="SignUpPhone">
-              <input type="number" id="SignUpPhone" placeholder="Số Điện Thoại">
-              <span class="error"></span>
+              <input type="text" id="SignUpPhone" name="phone" formControlName="phone" placeholder="Số Điện Thoại">
+              @if(!SignUpForm.get('phone')?.valid && SignUpForm.get('phone')?.touched && SignUpForm.get('phone')?.dirty) {
+                <span class="error">bạn phải nhập số điện thoại có 10 số</span>
+              } @else {
+                <span class="error"></span>
+              }
             </label>
             <label for="SignUpPassword">
-              <input type="password" autocomplete="new-password" id="SignUpPassword" placeholder="Mật Khẩu">
-              <span class="error"></span>
+              <input type="password" autocomplete="new-password" name="password" formControlName="password" id="SignUpPassword" placeholder="Mật Khẩu">
+              @if(!SignUpForm.get('password')?.valid && SignUpForm.get('password')?.touched) {
+                <span class="error">bạn phải nhập mật khẩu tối thiểu 6 kí tự</span>
+              } @else {
+                <span class="error"></span>
+              }
             </label>
             <label for="SignUpConfirm">
-              <input type="password" autocomplete="new-password" id="SignUpConfirm" placeholder="Xác Nhận Mật Khẩu">
-              <span class="error"></span>
+              <input type="password" autocomplete="new-password" name="confirmPassword" formControlName="confirmPassword" id="SignUpConfirm" placeholder="Xác Nhận Mật Khẩu">
+              @if(!SignUpForm.get('confirmPassword')?.valid && SignUpForm.get('confirmPassword')?.touched) {
+                <span class="error">bạn phải nhập xác nhận mật khẩu tối thiểu 6 kí tự</span>
+              } @else {
+                <span class="error"></span>
+              }
+              <span #confirmError class="error"></span>
             </label>
           </div>
+          <span #formError class="text-center text-red-600 text-[2rem] mt-5"></span>
           <button type="submit" class="sign-up">Đăng Kí</button>
           <div class="flex">
             <a routerLink="/sign-in" routerLinkActive="active"
@@ -56,4 +83,5 @@
       <div class="footer">FASCO Terms & Codnitions</div>
     </div>
   </div>
+  <app-notification message="Đăng kí tài khoản thành công" />
 </app-account-layout>

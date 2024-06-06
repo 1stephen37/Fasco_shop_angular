@@ -21,20 +21,28 @@
         <form class="formSignIn" (ngSubmit)="onLogin()" [formGroup]="formSignIn">
           <label for="SignInEmail">
             <input id="SignInEmail" formControlName="email" type="text" placeholder="Email">
-            @if (formSignIn.get('email')?.value === '' && formSignIn.get('email')?.touched && formSignIn.get('email')?.dirty) {
+            @if (formSignIn.get('email')?.value === '' && formSignIn.get('email')?.touched) {
               <span>Email không được để trống</span>
-            } @else if (!formSignIn.get('email')?.valid && formSignIn.get('email')?.touched && formSignIn.get('email')?.dirty) {
+            } @else if (!formSignIn.get('email')?.valid && formSignIn.get('email')?.touched) {
               <span>Email phải đúng định dạng</span>
+            } @else {
+              <span></span>
             }
           </label>
           <label for="SignInPassword">
-            <input id="SignInPassword" formControlName="password" type="password" placeholder="Mật Khẩu">
-            @if (formSignIn.get('password')?.value === '' && formSignIn.get('password')?.touched && formSignIn.get('password')?.dirty) {
+            <input #password id="SignInPassword" formControlName="password" type="password" placeholder="Mật Khẩu">
+            @if (formSignIn.get('password')?.value === '' && formSignIn.get('password')?.touched) {
               <span>Password không được để trống</span>
-            } @else if (!formSignIn.get('password')?.valid && formSignIn.get('password')?.touched && formSignIn.get('password')?.dirty) {
+            } @else if (!formSignIn.get('password')?.valid && formSignIn.get('password')?.touched) {
               <span>Password phải có tối thiểu 6 kí tự</span>
+            } @else {
+              <span></span>
             }
-            <i id="eye" class="fa-solid fa-eye-slash"></i>
+            @if(isPasswordOrText) {
+              <ng-icon (click)="switchPasswordOrText()" class="eye" name="faSolidEye" size="20" />
+            } @else {
+              <ng-icon (click)="switchPasswordOrText()" class="eye" name="faSolidEyeLowVision" size="20" />
+            }
           </label>
           <span class="message_error" #message_error></span>
           <button type="submit" class="sign-in">Đăng Nhập</button>
@@ -47,6 +55,6 @@
       <div class="footer">FASCO Terms & Codnitions</div>
     </div>
   </div>
-  <app-notification message="Đăng nhập thành công" />
+  <app-notification message="Đăng nhập thành công" [href]="href" />
 </app-account-layout>
 

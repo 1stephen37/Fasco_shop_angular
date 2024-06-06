@@ -1,0 +1,7 @@
+<div #confirm id="confirm" (click)="hide()">
+  <div class="main_form" (click)="$event.stopPropagation()">
+    <p>{{message}}</p>
+    <button id="no" type="submit" class="submit" (click)="hide()">Không, tôi không chắc</button>
+    <button id="yes" type="submit" class="submit" (click)="confirmClick()">Có, tôi chắc chắn</button>
+  </div>
+</div>

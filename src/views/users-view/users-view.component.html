@@ -1,5 +1,5 @@
 <app-admin-layout>
-  <app-admin-button message="add new" class="mt-[1rem] ml-auto" />
+  <app-admin-button message="add new" (click)="showAddForm()" class="mt-[1rem] ml-auto" />
   <div class="table">
     <div class="thead">
       <h2>id</h2>
@@ -12,20 +12,133 @@
       <h2>action</h2>
     </div>
     <div class="tbody">
-      @for(user of userList; track user.id_user) {
+      @for(user of userList; track user.id_user; let index = $index) {
         <div id="row-user-660df809d4bc19032aee14a6" class="row">
           <div>{{user.id_user}}</div>
-          <div class="name-user-660df809d4bc19032aee14a6">{{user.name}}</div>
-          <a class="img"><img class="img-user-660df809d4bc19032aee14a6" data-img="cat1712536659355-671915646.jpg" src="http://localhost:3000/images/uploads/cat1712536659355-671915646.jpg" alt=""></a>
-          <div class="email-user-660df809d4bc19032aee14a6">{{ user.email }}</div>
-          <div class="address-user-660df809d4bc19032aee14a6">{{ user.address }}</div>
-          <div class="phone-user-660df809d4bc19032aee14a6">{{ user.phone }}</div>
-          <div class="role-user-660df809d4bc19032aee14a6">{{roleUser[user.role]}}</div>
-          <div><a data-id-user="660df809d4bc19032aee14a6" class="edit-user" href="admin/users">Edit</a> / <a data-id-user="660df809d4bc19032aee14a6" class="remove-user" href="#">Remove</a></div>
-          <div class="password-user-660df809d4bc19032aee14a6" style="display: none">$2b$10$U2WdO1K8SvD/8xT8FOO4ieQISWhLR6Sg4jAs2m0WbLvt.aQyJy3.m</div>
+          <div>{{user.name}}</div>
+          <a class="img">
+            @if(user.image) {
+              <img width="48" height="48" ngSrc="{{API.image}}{{user.image}}" priority alt="{{user.image}}">
+            } @else {
+              <img width="48" height="48" ngSrc="assets/images/section/default.jpg" priority alt="user's avatar">
+            }
+          </a>
+          <div>{{ user.email }}</div>
+          <div>{{ user.address }}</div>
+          <div>{{ user.phone }}</div>
+          <div>{{roleUser[user.role]}}</div>
+          <div><a class="edit-user cursor-pointer" (click)="editUser(index)">Edit</a> / <a (click)="removeUser(index)" class="remove-user cursor-pointer">Remove</a></div>
         </div>
       }
-
     </div>
   </div>
+  <div #addForm (click)="hiddenAddForm()" class="formEditBackground">
+    <form class="main_form" (click)="$event.stopPropagation()" (ngSubmit)="addUser()" [formGroup]="addFormGroup" enctype="multipart/form-data">
+      <section class="flex id_name">
+        <div>
+          <label class="form-label">Users's Name</label>
+          <input type="text" class="form-control" name="addName" formControlName="name">
+          <span class="message"></span>
+        </div>
+        <div class="line"></div>
+        <div>
+          <label class="form-label">Email</label>
+          <input type="text" class="form-control" name="addEmail" formControlName="email">
+          <span class="message"></span>
+        </div>
+      </section>
+      <section class="flex id_name">
+        <div>
+          <label class="form-label">Password</label>
+          <input type="text" class="form-control" name="addPassword" formControlName="password">
+          <span class="message"></span>
+        </div>
+        <div class="line"></div>
+        <div>
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" name="addAddress" formControlName="address">
+          <span class="message"></span>
+        </div>
+      </section>
+      <section class="flex id_name">
+        <div>
+          <label class="form-label">User's Role</label>
+          <select name="addRole" id="addRoleUsers" formControlName="role">
+            <option value="0">User</option>
+            <option value="1">Admin</option>
+          </select>
+        </div>
+        <div class="line"></div>
+        <div>
+          <label class="form-label" for="addPhoneUsers">Phone Number</label>
+          <input type="text" class="form-control" name="addPhone" formControlName="phone">
+          <span class="message"></span>
+        </div>
+      </section>
+      <div>
+        <label class="form-label">Image</label>
+        <input (change)="onFileSelected($event)" type="file" accept="jpg, png" name="addImage" >
+      </div>
+      <div>
+        <img [src]="imagePreview" alt="">
+      </div>
+      <button type="submit" class="submit">Submit</button>
+    </form>
+  </div>
+
+  <div #editForm (click)="hiddenEditForm()" class="formEditBackground">
+    <form class="main_form" [formGroup]="editFormGroup" (ngSubmit)="onEditUser()" (click)="$event.stopPropagation()" enctype="multipart/form-data">
+      <section class="flex id_name">
+        <div>
+          <label class="form-label">Users's Name</label>
+          <input type="text" id="addNameUsers" name="editName" formControlName="name" class="form-control">
+          <span class="message"></span>
+        </div>
+        <div class="line"></div>
+        <div>
+          <label class="form-label">Email</label>
+          <input type="text" id="addEmailUsers" name="editEmail" formControlName="email" class="form-control">
+          <span class="message"></span>
+        </div>
+      </section>
+      <section class="flex id_name">
+        <div>
+          <label class="form-label">Password</label>
+          <input type="text" id="addPasswordUsers" name="editPassword" formControlName="password" class="form-control">
+          <span class="message"></span>
+        </div>
+        <div class="line"></div>
+        <div>
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" name="editAddress" formControlName="address">
+          <span class="message"></span>
+        </div>
+      </section>
+      <section class="flex id_name">
+        <div>
+          <label class="form-label">Name Jobs</label>
+          <select name="editRole" formControlName="role">
+            <option value="0">User</option>
+            <option value="1">Admin</option>
+          </select>
+        </div>
+        <div class="line"></div>
+        <div>
+          <label class="form-label" for="addPhoneUsers">Phone Number</label>
+          <input type="number" id="addPhoneUsers" name="editPhone" formControlName="phone" class="form-control">
+          <span class="message"></span>
+        </div>
+      </section>
+      <div>
+        <label class="form-label">Image</label>
+        <input (change)="onFileSelectedEdit($event)" type="file" accept="jpg, png">
+      </div>
+      <div>
+          <img [src]="imagePreviewEdit" alt="">
+      </div>
+      <button type="submit" class="submit">Submit</button>
+    </form>
+  </div>
+  <app-notification href="#" [message]="notification"></app-notification>
+  <app-confirm (delete)="DeleteUser()" message="Are you want to delete this user ?" />
 </app-admin-layout>

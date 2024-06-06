@@ -66,10 +66,10 @@
             </label>
             <div class="icon flex text-[2rem]">
               Sắp xếp theo giá
-              <a (click)="handleSortDownProduct()" data-sort="up">
+              <a class="cursor-pointer" (click)="handleSortDownProduct()" data-sort="up">
                 <ng-icon size="20" name="faSolidArrowUpWideShort"/>
               </a>
-              <a (click)="handleSortUpProduct()" data-sort="down">
+              <a class="cursor-pointer" (click)="handleSortUpProduct()" data-sort="down">
                 <ng-icon size="20" name="faSolidArrowDownWideShort"/>
               </a>
             </div>
@@ -79,9 +79,15 @@
               <app-box-product [id]="product.id_product" [name]="product.name" [image]="product.image"
               [designer]="product.designer" [properties]="product.properties" [color]="product.color" [price]="product.properties[0].price"
               />
+            } @empty {
+              <div class="text-center mt-10 col-span-3 text-[3rem]">Đang tải dữ liệu ...</div>
             }
           </div>
-          <div class="page flex"></div>
+          <div class="page flex">
+            @for ( pageIndex of range(pageLength); track pageIndex ) {
+              <a [class.active]="pageIndex === page" (click)="handleSwitchPage(pageIndex)">{{pageIndex}}</a>
+            }
+          </div>
         </div>
       </div>
     </section>

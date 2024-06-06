@@ -1,9 +1,9 @@
 <div class="product_box">
   <a (click)="handleDetail(name, id)" class="img link">
-    <img class="full" ngSrc="assets/images/products/{{image}}" [alt]="name" fill>
+    <img class="full" ngSrc="{{ API.image + image}}" [alt]="name" fill>
   </a>
   <h1 class="name flex">
-    <a class="link capitalize font-bold" href="detail/{{id}}">
+    <a (click)="handleDetail(name, id)" class="link capitalize font-bold cursor-pointer">
       {{ name.length < 15 ? name : name.slice(0, 15) + '...' }}
     </a>
     <span class="uppercase">

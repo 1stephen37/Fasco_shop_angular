@@ -1,1 +1,40 @@
-<p>history-view works!</p>
+<app-main-layout>
+  <section class="content">
+    <section class="section1">
+      <div class="header_section1 flex">
+        <h1 class="heading">Lịch sử mua hàng</h1>
+        <div class="link flex">
+          <a class="cursor-pointer">trang chủ</a>
+          <span>></span>
+          <a class="cursor-pointer">lích sử mua hàng của bạn</a>
+        </div>
+      </div>
+      @if(isLogin) {
+        <section class="main_cart">
+          <div class="thead">
+            <h1>tên Người đặt</h1>
+            <h1>địa chỉ</h1>
+            <h1>Trạng thái</h1>
+            <h1>Tổng tiền</h1>
+            <h1>Hành động</h1>
+          </div>
+          <div class="line"></div>
+          <div class="tbody flex">
+            @for (order of orders; track order.id_order) {
+              <div class="row">
+                <div class="">{{order.name}}</div>
+                <div class="">{{order.address}}</div>
+                <div class="">{{orderStatus[order.status]}}</div>
+                <div class="">{{transformCurrency(order.total)}}</div>
+                <div class="cursor-pointer">Xem chi tiết</div>
+              </div>
+            }
+          </div>
+          <div class="line"></div>
+        </section>
+      } @else {
+        <div class="text-center text-[2.2rem] font-semibold mt-5">Bạn phải đăng nhập để xem lịch sử mua hàng</div>
+      }
+    </section>
+  </section>
+</app-main-layout>

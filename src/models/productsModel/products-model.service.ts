@@ -17,13 +17,19 @@ export class ProductsModelService {
   }
 
   findProductsByCategoryAndPage(idCategory: number, page: number, limit: number = 6, sortBy?: string, sort?: string): Promise<{
-    paging: any,
+    paging: {
+      page: number,
+      fullProductOfCategory: number
+    },
     data: Product[]
   }> {
     let offset = (page - 1) * limit;
     return new Promise((resolve, reject) => {
       this.http.get<{
-        paging: any,
+        paging: {
+          page: number,
+          fullProductOfCategory: number
+        },
         data: Product[]
       }>(this.url + `?idCategory=${idCategory}&offset=${offset}&limit=${limit}&${sortBy ? `sortBy=${sortBy}` : ''}&${sortBy ? `sort=${sort}` : ''}`).subscribe(
         (data) => {

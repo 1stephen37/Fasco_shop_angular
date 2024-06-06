@@ -1,21 +1,30 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {CommonModule, DOCUMENT} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cart! : any;
-  constructor() {
-    this.cart = JSON.parse(localStorage.getItem('cart') as string) || [];
+  cart: Cart[] = [];
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    const localStorage = this.document.defaultView?.localStorage;
+    if (localStorage) {
+      this.cart = JSON.parse(localStorage.getItem('cart') ?? '[]');
+    }
   }
 
-
-  set setCart(cart: any) {
-    localStorage.setItem('cart', JSON.stringify(cart));
+  setCart(cart: Cart[]) {
     this.cart = cart;
+    localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
-  getCart() : any {
+  addCart(cart: Cart) {
+    this.cart.push(cart);
+    this.setCart(this.cart);
+  }
+
+  getCart(): Cart[] {
     return this.cart;
   }
 

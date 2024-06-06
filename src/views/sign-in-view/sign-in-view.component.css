@@ -123,7 +123,7 @@
   font-size: 1.6rem;
 }
 
-.container-full .content .formSignIn i#eye {
+.container-full .content .formSignIn .eye {
   position: absolute;
   font-size: 2rem;
   top: 1.5rem;

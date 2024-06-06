@@ -1,0 +1,39 @@
+<div id="addCart" #addCart (click)="hide()">
+  <div class="main" (click)="$event.stopPropagation()">
+    <div class="heading flex">
+      <h1>Giỏ Hàng</h1>
+      <i class="fa-solid fa-xmark closeBtn"></i>
+    </div>
+    <p class="sub-heading">Mua <span class="price">càng nhiều</span> ưu đãi càng nhiều <span
+      class="delivery">lên đến 20%</span></p>
+    <div class="table">
+      <div class="row flex">
+        <div class="img">
+          <img [ngSrc]="image" fill alt="product image">
+        </div>
+        <div class="content flex">
+          <div class="name">{{ name }}</div>
+          <div class="color">Color : {{color}}</div>
+          <div class="price">{{price}}</div>
+          <div class="quantity flex">
+            <div class="downBtn">-</div>
+            <p class="downBtn">{{quantity}}</p>
+            <div class="downBtn">+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="checkWrap flex">
+      <label for="check">
+        <input type="checkbox" name="" id="check">
+      </label>
+      <p>For <span>$10.00</span> please wrap the product</p>
+    </div>
+    <div class="subtotal flex">
+      <div class="">Subtotal</div>
+      <div class="subtotal-number">$${{ (quantity * price).toFixed(2) }}</div>
+    </div>
+    <a routerLink="/checkout" class="checkout">Thanh Toán</a>
+    <a routerLink="/cart" class="viewCart">Xem giỏ hàng</a>
+  </div>
+</div>

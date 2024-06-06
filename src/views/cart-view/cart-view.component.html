@@ -9,49 +9,61 @@
           <a href="#">Giỏ Hàng của tôi</a>
         </div>
       </div>
-      <div class="main_cart">
-        <div class="thead">
-          <h1>Sản Phẩm</h1>
-          <h1>Giá</h1>
-          <h1>Số Lượng</h1>
-          <h1>Tổng</h1>
-        </div>
-        <div class="line"></div>
-        <div class="tbody flex">
-          <div class="row cartItem-0">
-            <div class="product flex">
-              <img loading="lazy" src="assets/images/products/product5.svg" alt="">
-              <div class="flex">
-                <div class="name">Sản phẩm mẫu</div>
-                <div class="color">Màu: #80B0D5  - Cỡ:  S</div>
-                <div class="quantity">số lượng trong kho: 100</div>
-                <a href="#" class="removeBtn" data-index="0">Xóa</a>
-              </div>
-            </div>
-            <div class="price">200.000 VND</div>
-            <div class="quantity_cart flex">
-              <a href="/page/cart/#" class="downBtn" data-index="0">-</a>
-              <span class="quantity-0">2</span>
-              <a href="/page/cart/#" class="upBtn" data-index="0">+</a>
-            </div>
-            <div class="total total-0">
-              400.000 VND
-            </div>
+      @if (cart && cart.length > 0) {
+        <div class="main_cart">
+          <div class="thead">
+            <h1>Sản Phẩm</h1>
+            <h1>Giá</h1>
+            <h1>Số Lượng</h1>
+            <h1>Tổng</h1>
           </div>
+          <div class="line"></div>
+          <div class="tbody flex">
+            @for(item of cart; track item.id_product; let index = $index) {
+              <div class="row cart-{{index}}">
+                <div class="product flex">
+                  <div class="img grid my-auto">
+                    <img fill priority ngSrc="{{API.image + item.image}}" alt="product image">
+                  </div>
+                  <div class="flex">
+                    <div class="name">{{item.name}}</div>
+                    <div class="color">Màu: {{item.color}} - Cỡ: {{item.size}}</div>
+                    <div class="quantity">số lượng trong kho: {{ item.stock }}</div>
+                    <a class="removeBtn cursor-pointer" (click)="handleDelete(index)">Xóa</a>
+                  </div>
+                </div>
+                <div class="price">{{transformCurrency(item.price)}}</div>
+                <div class="quantity_cart flex">
+                  <a class="downBtn" (click)="handleDown(index)">-</a>
+                  <span class="quantity-0">{{item.quantity}}</span>
+                  <a class="upBtn" (click)="handleUp(index)">+</a>
+                </div>
+                <div class="total total-0">
+                  {{transformCurrency((item.price * item.quantity))}}
+                </div>
+              </div>
+            }
+
+          </div>
+          <div class="line"></div>
         </div>
-        <div class="line"></div>
-      </div>
+      } @else {
+        <div class="w-full h-[30vh] text-center text-[3rem] mt-[6rem] font-semibold">
+          Giỏ hàng của bạn đang trống
+        </div>
+      }
       <div class="checkbox flex">
-        <input type="checkbox"/>
-        <div><span>30.000 VND</span> để gói đơn hàng tốt hơn</div>
+        <input [checked]="isWrap" (change)="handleCheckWrap()" type="checkbox"/>
+        <div><span>{{transformCurrency(wrapPrice)}}</span> để gói đơn hàng tốt hơn</div>
       </div>
       <div class="line"></div>
       <div class="subtotal flex">
         <div>Tạm tính:</div>
-        <div>400.000 VND</div>
+        <div>{{transformCurrency(totalPrice)}}</div>
       </div>
-      <app-main-button class="ml-auto mt-[3rem] px-[18rem] py-[2rem]" message="thanh toán" href="/checkout" />
+      <app-main-button class="ml-auto mt-[3rem] px-[18rem] py-[2rem]" message="thanh toán" href="/checkout"/>
     </section>
-    <app-section7 />
+    <app-section7/>
   </section>
+  <app-confirm (delete)="DeleteItem()" message="Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng ?" />
 </app-main-layout>

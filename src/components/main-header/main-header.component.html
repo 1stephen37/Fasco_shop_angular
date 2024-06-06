@@ -13,17 +13,25 @@
     <a routerLink="/contact" routerLinkActive="active"
        ariaCurrentWhenActive="page">Liên Hệ</a>
   </nav>
-  <div class="icon flex">
+  <div class="icon flex relative">
     <ng-icon size="20" name="faSolidMagnifyingGlass"></ng-icon>
-    <ng-icon class="cursor-pointer" routerLink="/sign-in" routerLinkActive="active"
-             ariaCurrentWhenActive="page" size="20" name="faUser">
-    </ng-icon>
+    @if(!isLogin) {
+      <ng-icon class="cursor-pointer" routerLink="/sign-in"  routerLinkActive="active"
+               ariaCurrentWhenActive="page" size="20" name="faUser">
+      </ng-icon>
+    } @else {
+      <ng-icon class="cursor-pointer" routerLink="/account"  routerLinkActive="active"
+               ariaCurrentWhenActive="page" size="20" name="faUser">
+      </ng-icon>
+    }
     <ng-icon class="cursor-pointer" routerLink="/history" routerLinkActive="active"
              ariaCurrentWhenActive="page" size="20" name="faSolidClockRotateLeft">
     </ng-icon>
     <ng-icon class="cursor-pointer" routerLink="/cart" routerLinkActive="active"
              ariaCurrentWhenActive="page" size="20" name="faSolidBagShopping">
-      <span class="cartLength none">1</span>
     </ng-icon>
+    @if(cartLength > 0) {
+      <span class="cartLength">{{cartLength}}</span>
+    }
   </div>
 </header>

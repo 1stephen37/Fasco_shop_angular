@@ -60,6 +60,30 @@
         </p>
         <span class="">Delivery</span>
       </a>
+      <a routerLink="/admin/were-house" [class.active]="isActive('were-house')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidWarehouse" size="22"></ng-icon>
+          </i>
+        </p>
+        <span class="">Were House</span>
+      </a>
+      <a routerLink="/admin/transactions" [class.active]="isActive('transactions')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidMoneyBill1" size="22"></ng-icon>
+          </i>
+        </p>
+        <span class="">Transactions</span>
+      </a>
+      <a routerLink="/admin/sizes" [class.active]="isActive('sizes')" class="link flex">
+        <p>
+          <i>
+            <ng-icon name="faSolidSitemap" size="22"></ng-icon>
+          </i>
+        </p>
+        <span class="">Sizes</span>
+      </a>
     </div>
     <div class="help">
       <div class="icon flex">
@@ -88,12 +112,12 @@
     <div class="breadcrumb flex">
       <div class="left flex">
         <div class="top">
-          <a href="">Pages</a>
+          <a routerLink="/admin">Home</a>
           /
-          <a href="">Dashboard</a>
+          <a class="cursor-pointer">Admin Page</a>
         </div>
-        <div class="bottom">
-          Dashboard
+        <div class="bottom capitalize">
+          {{router.url.split('/')[2]}}
         </div>
       </div>
       <div class="right flex">

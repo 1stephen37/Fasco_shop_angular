@@ -14,8 +14,13 @@ import {Router} from "@angular/router";
 export class NotificationComponent {
   @ViewChild('notification') notification!: ElementRef;
   @Input() message!: string;
+  @Input() href : string = '/';
 
-  constructor(private router : Router) {}
+  constructor(private router: Router) {}
+
+  ngAfterViewInit() {
+    if (this.notification) this.hide();
+  }
 
   showNotification() {
     this.notification.nativeElement.style.display = 'flex';
@@ -27,7 +32,6 @@ export class NotificationComponent {
 
   click() {
     this.notification.nativeElement.style.display = 'none';
-    this.router.navigate(['/'])
-      .catch(err => console.error(err))
+    if(this.href !== '#') this.router.navigateByUrl(this.href).then(() => {});
   }
 }

@@ -5,95 +5,109 @@
         <h1 class="heading">Thanh Toán</h1>
       </div>
       <div class="line"></div>
-      <form method="post" action="/page/checkout" class="main-checkout">
-        <div class="left">
-          <div class="contact flex">
-            <div class="top flex">
-              <h1>Liên Hệ</h1>
-              <p>Đã có tài khoản?
-                <a class="text-[1.8rem]" routerLink="/sign-up" routerLinkActive="active"
-                                     ariaCurrentWhenActive="page">Tạo tài khoản</a></p>
-            </div>
-            <label for="emailCheckout">
-              <input type="text" id="emailCheckout" placeholder="Email Address">
-            </label>
-          </div>
-          <div class="delivery">
-            <h1 class="heading">Vận Chuyển</h1>
-            <div class="form flex">
-              <label for="checkoutOrder" class="checkoutOrder">
-                <input type="text" disabled placeholder="Ngày Đặt Hàng" id="checkoutOrder">
-              </label>
-              <label for="checkoutName" class="checkoutName">
-                <input type="text" placeholder="Họ và Tên" id="checkoutName">
-                <span></span>
-              </label>
-              <label class="checkoutAddress" for="checkoutAddress">
-                <input id="checkoutAddress" placeholder="Địa Chỉ" type="text">
-                <span></span>
-              </label>
-              <label for="checkoutPhone">
-                <input id="checkoutPhone" placeholder="Số Điện Thoại" type="number">
-                <span></span>
-              </label>
-            </div>
-            <div class="checkbox flex">
-              <label for="saveInfor">
-                <input id="saveInfor" type="checkbox">
-              </label>
-              Lưu thông tin
-            </div>
-          </div>
-        </div>
-        <div class="right">
-          <div class="cart_preview flex">
-            <div class="cart_item flex">
-              <div class="img">
-                <img loading="lazy" src="assets/images/products/product5.svg" alt="">
+      @if(user && isLogin && !isAdmin) {
+        <form method="post" [formGroup]="orderForm" (ngSubmit)="onCheckOut()" class="main-checkout">
+          <div class="left">
+            <div class="contact flex">
+              <div class="top flex">
+                <h1>Liên Hệ</h1>
+                <p>Đã có tài khoản?
+                  <a class="text-[1.8rem]" routerLink="/sign-up" routerLinkActive="active"
+                     ariaCurrentWhenActive="page">Tạo tài khoản</a></p>
               </div>
-              <div class="content_cart flex">
-                <h1 class="name">sản phẩm mẫu</h1>
-                <div class="color">Màu: #80B0D5</div>
-                <div class="quantity">Số lượng: 2</div>
+              <label for="emailCheckout">
+                <input type="text" formControlName="email"  id="emailCheckout" placeholder="Email Address">
+              </label>
+            </div>
+            <div class="delivery">
+              <h1 class="heading">Vận Chuyển</h1>
+              <div class="form flex">
+                <label for="checkoutOrder" class="checkoutOrder">
+                  <input type="text" placeholder="Ngày Đặt Hàng" formControlName="date" name="date" id="checkoutOrder">
+                </label>
+                <label for="checkoutName" class="checkoutName">
+                  <input type="text" formControlName="name" name="name" placeholder="Họ và Tên" id="checkoutName">
+                  <span></span>
+                </label>
+                <label class="checkoutAddress" for="checkoutAddress">
+                  <input id="checkoutAddress" formControlName="address" name="address" placeholder="Địa Chỉ" type="text">
+                  <span></span>
+                </label>
+                <label for="checkoutPhone">
+                  <input id="checkoutPhone" formControlName="phone" name="phone" placeholder="Số Điện Thoại" type="number">
+                  <span></span>
+                </label>
               </div>
-              <div class="subTotal">
-                400.000
+              <div class="checkbox flex">
+                <label for="saveInfor">
+                  <input id="saveInfor" type="checkbox">
+                </label>
+                Lưu thông tin
               </div>
             </div>
-
           </div>
-          <div class="rdiscountCode flex">
-            <div>Ưu Đãi</div>
-            <div id="voucherPlace" class="flex">
-              <div class="voucher voucher-6614722b10ebdad8860b8b86 active" data-id="6614722b10ebdad8860b8b86" data-discount="10">Mã : sale10 - Giảm giá: <span class="text-[1.8rem]">10</span>% </div>
+          <div class="right">
+            <div class="cart_preview flex">
+              @for(item of cart; track item.id_product) {
+                <div class="cart_item flex">
+                  <div class="img">
+                    <img priority fill [ngSrc]="API.image + item.image" alt="">
+                  </div>
+                  <div class="content_cart flex">
+                    <h1 class="name">{{item.name}}</h1>
+                    <div class="color">Màu: {{item.color}}</div>
+                    <div class="quantity">Số lượng: {{item.quantity}}</div>
+                  </div>
+                  <div class="subTotal">
+                    {{ transformCurrency(item.quantity * item.price)}}
+                  </div>
+                </div>
+              }
             </div>
-          </div>
-          <div class="total flex">
-            <div class="flex">
-              <div>Tạm Tính</div>
-              <div id="subTotal">400.000</div>
-            </div>
-            <div id="shipping" class="flex">
-              <div>Vận Chuyển</div>
-              <div id="shippingOption" class="" data-distance="2.30">
-                <div data-id="660e247a76a91a7ffa96b8e1" class="delivery-660e247a76a91a7ffa96b8e1 active">
-                  Express - Chậm : 10.000 x 2.30km = <span class="text-[1.8rem]">23.000</span></div>
+            <div class="rdiscountCode flex">
+              <div>Ưu Đãi</div>
+              <div id="voucherPlace" class="flex">
+                @for(voucher of vouchers; track voucher.id_voucher; let index = $index) {
+                  <div (click)="onSwitchVouchers(index)" [class.active]="voucherSelected === index">Mã : {{voucher.code}} - Giảm giá: <span class="text-[1.8rem]">{{voucher.discount}}</span>% </div>
+                }
               </div>
             </div>
-            <div class="flex">
-              <strong>Tổng</strong>
-              <strong id="total" total="118.78">423.000</strong>
+            <div class="total flex">
+              <div class="flex">
+                <div>Tạm Tính</div>
+                <div id="subTotal">{{ transformCurrency(subTotal) }}</div>
+              </div>
+              <div id="shipping" class="flex">
+                <div>Vận Chuyển</div>
+                @for(delivery of deliveries; track delivery.id_delivery; let index = $index) {
+                  <div id="shippingOption" class="" data-distance="2.30">
+                    <div [class.active]="deliverySelected === index" (click)="onSwitchDeliveries(index)">
+                      {{delivery.name}} - {{delivery.speed}} : {{transformCurrency(delivery.price)}} x {{ distance }} = <span class="text-[1.8rem]">{{ transformCurrency(Math.round((delivery.price * distance) / 1000) * 1000 ) }}</span></div>
+                  </div>
+                }
+              </div>
+              <div class="flex">
+                <strong>Tổng</strong>
+                <strong id="total">{{ transformCurrency(total) }}</strong>
+              </div>
+            </div>
+            <button type="submit" class="pay">
+              Thanh Toán Ngay
+            </button>
+            <div class="copyright">
+              Copyright © 2022 FASCO . All Rights Reseved.
             </div>
           </div>
-          <button type="submit" class="pay">
-            Thanh Toán Ngay
-          </button>
-          <div class="copyright">
-            Copyright © 2022 FASCO . All Rights Reseved.
-          </div>
-        </div>
-      </form>
+        </form>
+      } @else if(isAdmin) {
+        <div class="text-center mt-10 text-[2.2rem] font-medium">Quản trị viên không thể thực hiện thanh toán !</div>
+      } @else {
+        <div class="text-center mt-10 text-[2rem] font-medium">Bạn phải đăng nhập để thanh toán !</div>
+        <app-main-button href="/sign-in" message="Đăng nhập ngay" class="mx-auto mt-5 px-[2.2rem] py-[1rem]" />
+      }
     </section>
     <app-section7/>
   </section>
+
+  <app-notification href="/history" message="Thanh toán đơn hàng thành công, xem lịch sử đơn hàng của bạn ngay"></app-notification>
 </app-main-layout>
