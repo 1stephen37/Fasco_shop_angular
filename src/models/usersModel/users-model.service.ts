@@ -148,4 +148,15 @@ export class UsersModelService {
         })
     })
   }
+
+  async statistics(token : string) : Promise<{ allUsers: number}> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return new Promise((resolve, reject) => {
+      this.http.get<{ allUsers: number}>(this.url + '/statistics', { headers })
+        .pipe()
+        .subscribe((data) => {
+          resolve(data);
+        })
+    })
+  }
 }

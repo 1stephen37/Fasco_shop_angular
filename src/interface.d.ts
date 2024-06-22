@@ -24,6 +24,7 @@ interface Product {
     price : number;
   }[];
   images : string[];
+  category_name: string;
 }
 
 interface Cart {
@@ -54,7 +55,7 @@ interface User {
   role: number
 }
 
-interface Deliveries {
+interface Delivery {
   id_delivery: string;
   name : string;
   price: number;

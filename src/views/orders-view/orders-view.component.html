@@ -1,34 +1,86 @@
 <app-admin-layout>
   <div class="table">
     <div class="thead">
-      <h2>id</h2>
-      <h2>information</h2>
-      <h2>order date</h2>
-      <h2>total</h2>
-      <h2>status</h2>
-      <h2>action</h2>
+      <h2>Tên</h2>
+      <h2>Địa chỉ</h2>
+      <h2>Ngày đặt</h2>
+      <h2>Trạng thái</h2>
+      <h2>Tổng tiền</h2>
+      <h2>Hành động</h2>
     </div>
     <div class="tbody">
-      <div class="row">
-        <div>6615c6467b06062a0eb0f626</div>
-        <div>
-          <div>Wrap : true</div>
-          <div>Name : tienuser</div>
-          <div>Ship Fee : 3.45$</div>
-          <div>Distance : 2.3km</div>
-          <div>Adress : 50 washington DC</div>
-          <div>Phone number : 0338015137</div>
-          <div>Email : dienndtps32003&#64;fpt.edu.vn</div>
+      @for (order of orders; track order.id_order) {
+        <div class="row">
+          <div class="">{{ order.name }}</div>
+          <div class="">{{ order.address }}</div>
+          <div class="">{{ order.createdAt }}</div>
+          <div class="">{{ orderStatus[order.status] }}</div>
+          <div class="">{{ transformCurrency(order.total) }}</div>
+          <a class="cursor-pointer select-none" (click)="onDetail(order.id_order, $index)">xem chi tiết</a>
         </div>
-        <div>4/9/2024, 6:50:45 PM</div>
-        <div>162.9$</div>
-        <div>wait for confirmation</div>
-        <div>
-          <a class="detail" data-id="6615c6467b06062a0eb0f626" href="#">Detail</a>
-          -
-          <a class="update" data-id="6615c6467b06062a0eb0f626" href="#">Update</a>
+      }
+    </div>
+  </div>
+  <div #detail style="display: none" (click)="hiddenDetail()"
+       class="w-full h-screen justify-center items-center bg-[rgba(0,0,0,0.5)] top-0 left-0 fixed">
+    <div (click)="$event.stopPropagation()"
+         class="main-detail w-9/12  h-max max-h-[80dvh] min-h-[20dvh] p-10 bg-white rounded-2xl ">
+      <h2 class="text-[3.2rem] font-bold text-center">Chi tiết đơn hàng</h2>
+      <div class="text-[2rem] font-bold text-center">Mã đơn hàng : {{ order ? order.id_order : '' }} - Đơn hàng giảm giá
+        : {{ order ? order.voucher_code ? 'có' : 'không' : '' }}
+        - Đơn hàng giảm giá : {{ order ? order.voucher_code ? 'có' : 'không' : '' }}
+      </div>
+      <div class="text-[2rem] font-bold text-center">Trạng thái đơn hàng
+        : {{ order ? orderStatus[order.status] : '' }}
+      </div>
+      <div class="text-[2rem] text-center mt-5 max-h-[50dvh] overflow-y-auto">
+        <div class="text-[2.4rem] thead grid grid-cols-6 mb-5">
+          <h2>Tên sản phẩm</h2>
+          <h2>Ảnh sản phẩm</h2>
+          <h2>Giá</h2>
+          <h2>Số lượng</h2>
+          <h2>Tổng</h2>
+          <h2>Kích cỡ</h2>
+        </div>
+        <div class="flex flex-col gap-10 ">
+          @for (orderDetail of orderDetails; track orderDetail.id_order_detail) {
+            <div class="grid grid-cols-6 text-[2rem] place-items-center">
+              <div class="text-[2rem]">{{ orderDetail.product_name }}</div>
+              <div class="relative w-[10rem] h-[10rem] mx-auto">
+                <img fill [ngSrc]="API.image + orderDetail.product_image" class="rounded" alt="">
+              </div>
+              <div class="text-[2rem]">{{ transformCurrency(orderDetail.price) }}</div>
+              <div class="text-[2rem]">{{ orderDetail.quantity }}</div>
+              <div class="text-[2rem]">{{ transformCurrency(orderDetail.quantity * orderDetail.price) }}</div>
+              <div class="text-[2rem]">{{ orderDetail.size }}</div>
+            </div>
+          }
         </div>
       </div>
+      <div class="text-center mt-5 text-[2rem]">Phí vận chuyển : {{ order ? transformCurrency(order.ship_fee) : "" }} -
+        Tổng thành tiền : {{ order ? transformCurrency(order.total) : "" }}
+      </div>
+      <div (click)="onUpdateDetailStatus(order.id_order ? order.id_order : '0')"
+           class="text-[2rem] mt-5 text-center bg-black w-max mx-auto text-white py-5 px-10 rounded-2xl cursor-pointer select-none">
+        Cập nhật trạng thái
+      </div>
+    </div>
+  </div>
+
+  <div #update style="display: none" (click)="hiddenUpdate()"
+       class="w-full h-screen justify-center items-center bg-[rgba(0,0,0,0.5)] top-0 left-0 fixed">
+    <div (click)="$event.stopPropagation()" class="max-w-9/12 w-1/2 h-max max-h-[80dvh] bg-white rounded-xl p-10">
+      <h1 class="text-center text-[2.4rem] font-bold">Cập nhật trạng thái đơn hàng</h1>
+      <div class="text-[2rem] my-5 text-center font-semibold">Mã đơn hàng : #{{idOrderUpdate}}</div>
+      <form (ngSubmit)="onSubmitUpdateStatus()" [formGroup]="formUpdateStatus" class="mt-5 w-max mx-auto">
+        <label class="text-[2rem]" for="status">Chọn trạng thái đơn hàng :</label> <br/>
+        <select id="status" name="status" formControlName="status" class="text-[2rem] outline-none rounded-xl mt-5 mx-auto block w-max bg-black text-white p-5">
+          @for (status of Object.values(orderStatus); track status) {
+            <option class="text-[2rem] p-10 outline-none" [value]="$index">{{ status }}</option>
+          }
+        </select>
+        <button type="submit" class="block w-max mx-auto border-black border hover:opacity-50 border-solid mt-5 bg-white text-black px-5 py-3 rounded-2xl text-[2rem]">Cập nhật</button>
+      </form>
     </div>
   </div>
 </app-admin-layout>

@@ -190,8 +190,8 @@
               <div class="flex items-center gap-[1rem]">
                 <img
                   [ngSrc]="API.image + review.image_user"
-                  alt="User Avatar" width="60" height="60"
-                  class="rounded-full mr-2"
+                  alt="User Avatar" width="50" height="10"
+                  class="rounded-[.5rem] mr-2"
                 />
                 <span class="text-gray-700 text-[2rem]">{{ review.name_user }}</span>
               </div>
@@ -203,10 +203,13 @@
         </div>
       }
       @if(isLogin) {
-        <form class="w-full h-[30dvh] mt-5">
+        <form class="w-full max-h-[30dvh] h-[20dvh] mt-10" (ngSubmit)="onSubmitReview()" [formGroup]="reviewForm">
           <textarea class="w-full h-full bg-white border border-solid border-black rounded-[.5rem]
-          outline-none text-[2rem] p-2"
+          outline-none text-[2rem] p-5" formControlName="content"
                     placeholder="Hãy cho chúng tôi biết đánh giá của bạn"></textarea>
+          <button type="submit" class="text-[2rem] w-max px-5 py-3 bg-black text-white text-center h-max mx-auto mt-5 rounded-[.5rem] cursor-pointer
+          select-none"
+          >Gửi bình luận</button>
         </form>
       } @else {
         <div routerLink="/sign-in" class="text-center text-[2rem] mt-20 cursor-pointer">Bạn phải đăng nhập để có thể đánh giá sản phẩm</div>
@@ -218,7 +221,7 @@
   @if (product) {
     <app-add-to-card [color]="product.color" [name]="product.name"
                      [price]="(product.properties[0].price * (1 - (product.sale_off / 100)))"
-                     [quantity]="quantity" image="{{API.image}}images/uploads/{{product.image}}"/>
+                     [quantity]="quantity" [image]="API.image + product.image"/>
   }
 
 </app-main-layout>

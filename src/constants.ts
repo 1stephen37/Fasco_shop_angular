@@ -31,12 +31,16 @@ export const roleUserReverse : Record<string, number> = {
 export const orderStatus: Record<number, string> = {
   0: 'Đang chờ xử lý', // Đơn hàng mới đặt, chưa được xử lý
   1: 'Đã xác nhận', // Đơn hàng đã được xác nhận và đang được chuẩn bị
-  2: 'Đang xử lý', // Đơn hàng đang được xử lý
-  3: 'Đang giao', // Đơn hàng đã được vận chuyển
-  4: 'Đã giao', // Đơn hàng đã được giao thành công
-  5: 'Đã hủy', // Đơn hàng đã bị hủy
-  6: 'Đã trả lại', // Đơn hàng đã được gửi trả lại
-  7: 'Đã hoàn tiền', // Đơn hàng đã được hoàn tiền
+  2: 'Đang giao', // Đơn hàng đã được vận chuyển
+  3: 'Đã giao', // Đơn hàng đã được giao thành công
+  4: 'Đã hủy', // Đơn hàng đã bị hủy
+  5: 'Đã trả lại', // Đơn hàng đã được gửi trả lại
+};
+
+export const deliveryStatus: Record<number, string> = {
+  0: 'Ngưng hoạt động', // Đơn hàng mới đặt, chưa được xử lý
+  1: 'Đang hoạt động', // Đơn hàng đã được xác nhận và đang được chuẩn bị
+  2: 'Tạm ngưng hoạt động', // Đơn hàng đã được xác nhận và đang được chuẩn bị
 };
 
 export const orderStatusReverse : Record<number, string> = {

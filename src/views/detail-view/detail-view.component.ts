@@ -12,7 +12,7 @@ import {CartService} from "../../services/cart/cart.service";
 import {ReviewsModelService} from "../../models/reviewsModel/reviews-model.service";
 import {UsersModelService} from "../../models/usersModel/users-model.service";
 import {RouterLink} from "@angular/router";
-import {response} from "express";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 
 
 @Component({
@@ -24,7 +24,8 @@ import {response} from "express";
     Section7Component,
     NgOptimizedImage,
     AddToCartComponent,
-    RouterLink
+    RouterLink,
+    ReactiveFormsModule
   ],
   templateUrl: './detail-view.component.html',
   styleUrl: './detail-view.component.css'
@@ -32,6 +33,7 @@ import {response} from "express";
 export class DetailViewComponent {
   @ViewChild('main_img') mainImage!: ElementRef;
   @ViewChild(AddToCartComponent) addToCardElement!: AddToCartComponent;
+  reviewForm! : FormGroup;
   user!: User;
   reviewsList!: Review[];
   indexProperty: number = 0;
@@ -42,6 +44,9 @@ export class DetailViewComponent {
 
   constructor(private productsModel: ProductsModelService, @Inject(PLATFORM_ID) private platformId: Object, private cartService: CartService
     , private reviewsModel: ReviewsModelService, private usersModel : UsersModelService) {
+    this.reviewForm = new FormGroup({
+      'content': new FormControl('', [Validators.required])
+    })
     if (isPlatformBrowser(this.platformId)) {
       this.idProduct = JSON.parse(sessionStorage.getItem('idProduct') as string);
       this.isLogin = this.usersModel.checkLogin();
@@ -53,19 +58,30 @@ export class DetailViewComponent {
     this.reviewsModel.findAllReviewsByIdProduct(this.idProduct)
       .then((reviews) => {
         this.reviewsList = reviews as Review[];
-        console.log(this.reviewsList);
       })
   }
 
   ngOnInit() {
-    console.log(this.isLogin);
     if(this.isLogin) {
       const user = this.usersModel.getUser();
-      console.log(user);
       this.usersModel.findUserById(user.id_user, user.token)
         .then((response) => {
-          console.log(response);
           this.user = response as User;
+        })
+    }
+  }
+
+  onSubmitReview() {
+    if(this.reviewForm.get('content')?.valid) {
+      const user = this.usersModel.getUser()
+      this.reviewsModel.createReview({
+        id_product: this.product.id_product,
+        id_user: user.id_user,
+        content: this.reviewForm.value.content
+      }, user.token)
+        .then((data) => {
+          this.reviewForm.get('content')?.reset();
+          this.reviewsList.push(data as Review);
         })
     }
   }
@@ -110,9 +126,6 @@ export class DetailViewComponent {
         size: this.product.properties[this.indexProperty].size
       });
       this.cartService.setCart(cart);
-      console.log('add cart successfully')
     }
-
-    console.log(this.cartService.getCart());
   }
 }

@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {API} from "../../constants";
 
 @Component({
   selector: 'app-add-to-card',
@@ -33,4 +34,5 @@ export class AddToCartComponent {
     this.addCart.nativeElement.style.display = 'block';
   }
 
+  protected readonly API = API;
 }

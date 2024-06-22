@@ -25,6 +25,8 @@ import {SizeViewComponent} from "../views/size-view/size-view.component";
 import {TransactionsViewComponent} from "../views/transactions-view/transactions-view.component";
 import {ResetPasswordViewComponent} from "../views/reset-password-view/reset-password-view.component";
 import {SendEmailViewComponent} from "../views/send-email-view/send-email-view.component";
+import {ReviewsViewComponent} from "../views/reviews-view/reviews-view.component";
+import {authGuard} from "../services/auth/auth.guard";
 
 export let routes: Routes;
 routes = [
@@ -50,7 +52,7 @@ routes = [
     path: 'history', component: HistoryViewComponent
   },
   {
-    path: 'admin/dashboard', component: AdminViewComponent
+    path: 'admin/dashboard', component: AdminViewComponent, canMatch: [authGuard]
   },
   {
     path: 'sign-in', component: SignInViewComponent
@@ -77,34 +79,37 @@ routes = [
     path: 'checkout', component: CheckoutViewComponent
   },
   {
-    path: 'admin/categories', component: CategoriesViewComponent
+    path: 'admin/categories', component: CategoriesViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/deliveries', component: DeliveriesViewComponent
+    path: 'admin/deliveries', component: DeliveriesViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/products', component: ProductsViewComponent
+    path: 'admin/products', component: ProductsViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/vouchers', component: VouchersViewComponent
+    path: 'admin/vouchers', component: VouchersViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/users', component: UsersViewComponent
+    path: 'admin/users', component: UsersViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/orders', component: OrdersViewComponent
+    path: 'admin/orders', component: OrdersViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/were-house', component: WerehouseViewComponent
+    path: 'admin/were-house', component: WerehouseViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/sizes', component: SizeViewComponent
+    path: 'admin/sizes', component: SizeViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/transactions', component: TransactionsViewComponent
+    path: 'admin/transactions', component: TransactionsViewComponent, canMatch: [authGuard]
   },
   {
-    path: 'admin/orders', component: OrdersViewComponent
+    path: 'admin/orders', component: OrdersViewComponent, canMatch: [authGuard]
+  },
+  {
+    path: 'admin/reviews', component: ReviewsViewComponent, canMatch: [authGuard]
   },
   {
     path: 'admin', redirectTo: 'admin/dashboard', pathMatch: "full"

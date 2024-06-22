@@ -44,7 +44,7 @@ export class CheckoutViewComponent {
   wrapPrice: number = 0;
   user!: User;
   cart!: Cart[];
-  deliveries!: Deliveries[];
+  deliveries!: Delivery[];
   deliverySelected: number = 0;
   vouchers!: Voucher[];
   voucherSelected: number = 0;
@@ -81,7 +81,7 @@ export class CheckoutViewComponent {
                 this.distance = distance as number;
                 this.deliveriesModel.findALlDeliveries()
                   .then((response) => {
-                    this.deliveries = response as Deliveries[];
+                    this.deliveries = response as Delivery[];
                     this.vouchersModel.findVouchersByAmount(this.totalPriceCart())
                       .then((res) => {
                         this.vouchers = res as Voucher[];
@@ -144,8 +144,11 @@ export class CheckoutViewComponent {
         ship_fee: Math.round((this.distance * this.deliveries[this.deliverySelected].price) / 1000) * 1000,
         total: this.total,
         status: 0,
-        createdAT: this.orderForm.get('date')?.value
+        createdAT: this.orderForm.get('date')?.value,
+        is_wrap: this.isWrap ? 1 : 0,
+        wrap_price: this.wrapPrice
       };
+      console.log(order);
       this.ordersModel.createOrder(order, userNow.token)
         .then((order) => {
           for(let item of this.cart) {

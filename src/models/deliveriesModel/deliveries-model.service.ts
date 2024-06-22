@@ -25,4 +25,16 @@ export class DeliveriesModelService {
       })
     })
   }
+
+  findDeliveriesByPage(page: number, limit : number) {
+    const offset = (page - 1) * limit;
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + `?offset=${offset}&limit=${limit}`)
+        .pipe()
+        .subscribe((response) => {
+          resolve(response)
+        })
+    })
+  }
+
 }

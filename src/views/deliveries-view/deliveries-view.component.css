@@ -31,6 +31,7 @@
 .table .tbody .row {
   display: grid;
   grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr 0.5fr ;
+  place-items: center;
   align-items: center;
   height: max-content;
   font-size: 2.4rem;
@@ -43,6 +44,7 @@
   min-width: 100%;
   height: max-content;
   word-break: break-all;
+  font-size: 1.6rem;
 }
 
 .table .tbody .row div span {

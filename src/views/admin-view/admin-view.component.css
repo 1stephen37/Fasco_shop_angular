@@ -53,15 +53,13 @@
 }
 
 .chart {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
   max-height: 400px;
   margin-top: 5rem;
 }
 
 .chart .line_char {
-  width: 800px;
-  height: 350px;
+  width: auto;
+  height: auto;
 }
 
 .chart .pie_chart {

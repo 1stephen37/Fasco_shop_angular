@@ -18,12 +18,14 @@ import {orderStatus} from "../../constants";
 export class HistoryViewComponent {
   isLogin: boolean = false;
   orders!: Order[];
+  user : any;
 
   constructor(private ordersModel: OrderModelService, private usersModel: UsersModelService, @Inject(PLATFORM_ID) platformId: object) {
     if (isPlatformBrowser(platformId)) {
       this.isLogin = this.usersModel.checkLogin();
+      this.user = this.usersModel.getUser();
       if(this.isLogin) {
-        this.ordersModel.findOrderByIdUser(this.usersModel.getUser().id_user)
+        this.ordersModel.findOrderByIdUser(this.user.id_user, this.user.token)
           .then((response) => {
             this.orders = response;
           })

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {API, tableName} from "../../constants";
 
 @Injectable({
@@ -26,4 +26,13 @@ export class ReviewsModelService {
     })
   }
 
+  createReview(data : any, token : string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + '/add', data, { headers })
+        .subscribe((response) => {
+          resolve(response);
+        })
+    })
+  }
 }

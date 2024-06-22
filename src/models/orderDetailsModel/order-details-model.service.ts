@@ -25,4 +25,15 @@ export class OrderDetailsModelService {
       });
     })
   }
+
+  findAllOrderDetailsByIdOrder(id: string, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + '?idOrder=' + id, {headers})
+        .pipe()
+        .subscribe((res) => {
+          resolve(res);
+        })
+    })
+  }
 }
